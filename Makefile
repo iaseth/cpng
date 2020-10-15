@@ -1,7 +1,8 @@
 AMP = @
 
 AR = ${AMP}ar
-GCC = ${AMP}gcc
+CC = ${AMP}gcc
+
 INCLUDE_FLAG = -Iinclude
 LINK_FLAG = -lpng
 
@@ -27,19 +28,19 @@ debug:
 	${eval AMP := }
 
 ${MAIN_OBJ}: ${MAIN_SRC}
-	${GCC} -c $< -o $@ ${INCLUDE_FLAG}
+	${CC} -c $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_OBJS}: build/%.o: src/%.c include/%.h
-	${GCC} -c $< -o $@ ${INCLUDE_FLAG}
+	${CC} -c $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_STATIC_LIB}: ${CPNG_OBJS}
 	${AR} rcs $@ $^
 
 ${CPNG_DYNAMIC_LIB}: ${CPNG_OBJS}
-	${GCC} -shared $^ -o $@
+	${CC} -shared $^ -o $@
 
 ${BIN}: ${MAIN_OBJ} ${CPNG_OBJS}
-	${GCC} $^ -o $@ ${LINK_FLAG}
+	${CC} $^ -o $@ ${LINK_FLAG}
 
 lib: ${CPNG_STATIC_LIB} ${CPNG_DYNAMIC_LIB}
 
