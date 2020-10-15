@@ -215,13 +215,12 @@ void cpng_image_print_colors (struct CpngImage *image) {
 
 void cpng_image_print_cursors (struct CpngImage *image) {
 	printf("  Cursors: [");
-	printf("(%d, %d)", image->cursors[0].row, image->cursors[0].col);
-	for (int i = 1; i < MAX_CURSOR_MEMORY; ++i) {
-		printf(", (%d, %d)", image->cursors[i].row, image->cursors[i].col);
+	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
+		if (i > 0) printf(", ");
+		if (i == image->current_color_index) printf("@");
+		printf("(%d, %d)", image->cursors[i].row, image->cursors[i].col);
 	}
 	printf("]\n");
-	struct CpngCursor *cursor = &image->cursors[image->current_cursor_index];
-	printf("   Cursor: R%d, C%d\n", cursor->row, cursor->col);
 }
 
 
