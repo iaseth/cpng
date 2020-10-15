@@ -37,11 +37,11 @@ void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel 
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height);
 void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width);
 
-void cpng_image_add_bar_at_top (struct CpngImage *image, int thickness, int offset);
-void cpng_image_add_bar_at_bottom (struct CpngImage *image, int thickness, int offset);
+void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness);
+void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness);
 
-void cpng_image_add_rod_at_top (struct CpngImage *image, int thickness, int offset);
-void cpng_image_add_rod_at_bottom (struct CpngImage *image, int thickness, int offset);
+void cpng_image_add_rod_at_top (struct CpngImage *image, int offset, int thickness);
+void cpng_image_add_rod_at_bottom (struct CpngImage *image, int offset, int thickness);
 
 void cpng_image_print (struct CpngImage *image);
 void cpng_image_save_to_disk (struct CpngImage *image);

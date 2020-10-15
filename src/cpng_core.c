@@ -83,6 +83,22 @@ void cpng_image_add_square (struct CpngImage *image, int start_row, int start_co
 	cpng_image_add_rectangle(image, start_row, start_col, width, width);
 }
 
+void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness) {
+	cpng_image_add_rectangle(image, offset, 0, image->width, thickness);
+}
+
+void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness) {
+	cpng_image_add_rectangle(image, (image->height - offset - thickness), 0, image->width, thickness);
+}
+
+void cpng_image_add_rod_at_top (struct CpngImage *image, int offset, int thickness) {
+	//
+}
+
+void cpng_image_add_rod_at_bottom (struct CpngImage *image, int offset, int thickness) {
+	//
+}
+
 
 void cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
