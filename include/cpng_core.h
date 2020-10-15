@@ -15,7 +15,9 @@ struct CpngImage {
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	uint8_t **rows;
+	uint8_t **rows_red;
+	uint8_t **rows_green;
+	uint8_t **rows_blue;
 };
 
 struct CpngImage *get_new_cpng_image (int width, int height);
