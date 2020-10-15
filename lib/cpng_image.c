@@ -14,6 +14,20 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->cursor_row = 0;
 	image->cursor_col = 0;
 
+	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
+		image->colors[i].red = 0;
+		image->colors[i].green = 0;
+		image->colors[i].blue = 0;
+		image->colors[i].transparency = 0;
+		strcpy(image->colors[i].name, "Unnamed");
+	}
+
+	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
+		image->cursors[i].row = 0;
+		image->cursors[i].col = 0;
+		image->cursors[i].parent = image;
+	}
+
 	image->author[0] = '\0';
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
