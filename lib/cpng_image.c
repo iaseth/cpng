@@ -205,12 +205,12 @@ void cpng_image_print_meta (struct CpngImage *image) {
 
 void cpng_image_print_colors (struct CpngImage *image) {
 	printf("   Colors: [");
-	printf("%s", image->colors[0].name);
-	for (int i = 1; i < MAX_COLOR_MEMORY; ++i) {
-		printf(", %s", image->colors[i].name);
+	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
+		if (i > 0) printf(", ");
+		if (i == image->current_color_index) printf("@");
+		printf("%s", image->colors[i].name);
 	}
 	printf("]\n");
-	printf("    Color: %s\n", image->colors[image->current_color_index].name);
 }
 
 void cpng_image_print_cursors (struct CpngImage *image) {
