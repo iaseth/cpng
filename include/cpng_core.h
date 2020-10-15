@@ -13,7 +13,7 @@ struct Pixel {
 struct CpngImage {
 	int width;
 	int height;
-	int status;
+	int code;
 
 	char author[MAX_STRING_LENGTH];
 	char filename[MAX_STRING_LENGTH];

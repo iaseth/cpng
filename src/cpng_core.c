@@ -9,7 +9,7 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image = malloc(sizeof(struct CpngImage));
 	image->width = width;
 	image->height = height;
-	image->status = 0;
+	image->code = 0;
 
 	image->author[0] = '\0';
 	image->filename[0] = '\0';
@@ -18,6 +18,11 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->rows = malloc(sizeof(struct Pixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
 		image->rows[i] = malloc(sizeof(struct Pixel) * image->width);
+		for (int j = 0; j < image->width; ++j) {
+			image->rows[i][j].red = 0;
+			image->rows[i][j].green = 0;
+			image->rows[i][j].blue = 0;
+		}
 	}
 
 	return image;
@@ -41,6 +46,84 @@ int *cpng_image_print (struct CpngImage *image) {
 }
 
 int *cpng_image_save_to_disk (struct CpngImage *image) {
+	FILE *fp = NULL;
+	png_structp png_ptr = NULL;
+	png_infop info_ptr = NULL;
+	png_bytep row = NULL;
+
+	fp = fopen(image->filename, "wb");
+	if (fp == NULL) {
+		printf("Could not open file %s for writing\n", image->filename);
+		image->code = 1;
+		goto finalise;
+	}
+
+	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	if (png_ptr == NULL) {
+		printf("Could not allocate write struct\n");
+		image->code = 1;
+		goto finalise;
+	}
+
+	info_ptr = png_create_info_struct(png_ptr);
+	if (info_ptr == NULL) {
+		printf("Could not allocate info struct\n");
+		image->code = 1;
+		goto finalise;
+	}
+
+	if (setjmp(png_jmpbuf(png_ptr))) {
+		printf("Error during png creation\n");
+		image->code = 1;
+		goto finalise;
+	}
+
+	png_init_io(png_ptr, fp);
+
+	png_set_IHDR(png_ptr, info_ptr, image->width, image->height, 8, 
+		PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE, 
+		PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+
+	if (image->title != NULL) {
+		png_text title_text;
+		title_text.compression = PNG_TEXT_COMPRESSION_NONE;
+		title_text.key = "Title";
+		title_text.text = image->title;
+		png_set_text(png_ptr, info_ptr, &title_text, 1);
+	}
+
+	png_write_info(png_ptr, info_ptr);
+
+	row = (png_bytep) malloc(3 * image->width * sizeof(png_byte));
+
+	for (int y=0 ; y<image->height; y++) {
+		for (int x=0 ; x<image->width; x++) {
+			row[x*3] = image->rows[y][x].red;
+			row[x*3 + 1] = image->rows[y][x].green;
+			row[x*3 + 2] = image->rows[y][x].blue;
+		}
+		png_write_row(png_ptr, row);
+	}
+
+	png_write_end(png_ptr, NULL);
+
+	finalise:
+	if (fp != NULL) {
+		fclose(fp);
+	}
+
+	if (info_ptr != NULL) {
+		png_free_data(png_ptr, info_ptr, PNG_FREE_ALL, -1);
+	}
+
+	if (png_ptr != NULL) {
+		png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+	}
+
+	if (row != NULL) {
+		free(row);
+	}
+
 	printf("Saved CpngImage: '%s' [%d * %d]\n", image->filename, image->width, image->height);
 	return 0;
 }
