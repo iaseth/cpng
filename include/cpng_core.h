@@ -19,6 +19,10 @@ struct CpngImage {
 
 struct CpngImage *get_new_cpng_image (int width, int height);
 
+void cpng_image_set_author (struct CpngImage *image, char *author);
+void cpng_image_set_filename (struct CpngImage *image, char *filename);
+void cpng_image_set_title (struct CpngImage *image, char *title);
+
 int *print_cpng_image (struct CpngImage *image);
 int *save_cpng_image (struct CpngImage *image);
 
