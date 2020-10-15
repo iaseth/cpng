@@ -54,6 +54,8 @@ move:
 
 clean:
 	${RM} ${BIN}
+	${RM} ${CPNG_STATIC_LIB}
+	${RM} ${CPNG_DYNAMIC_LIB}
 	${RM} ${MAIN_OBJ}
 	${RM} ${CPNG_OBJS}
 
