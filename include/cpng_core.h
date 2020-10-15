@@ -28,8 +28,21 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
-int *cpng_image_print (struct CpngImage *image);
-int *cpng_image_save_to_disk (struct CpngImage *image);
+void cpng_image_set_primary (struct CpngImage *image, struct Pixel color);
+void cpng_image_set_secondary (struct CpngImage *image, struct Pixel color);
+void cpng_image_set_tertiary (struct CpngImage *image, struct Pixel color);
+
+void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height);
+void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width);
+
+void cpng_image_add_bar_at_top (struct CpngImage *image, int thickness, int offset);
+void cpng_image_add_bar_at_bottom (struct CpngImage *image, int thickness, int offset);
+
+void cpng_image_add_rod_at_top (struct CpngImage *image, int thickness, int offset);
+void cpng_image_add_rod_at_bottom (struct CpngImage *image, int thickness, int offset);
+
+void cpng_image_print (struct CpngImage *image);
+void cpng_image_save_to_disk (struct CpngImage *image);
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image);
 
