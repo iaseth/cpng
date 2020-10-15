@@ -5,7 +5,17 @@
 
 struct CpngColor {
 	uint8_t red, green, blue, transparency;
+	char name[20];
 };
+
+struct CpngColor cpng_color_print (struct CpngColor color);
+
+struct CpngColor cpng_color_set_RGB (struct CpngColor color, int red, int green, int blue);
+struct CpngColor cpng_color_set_transparency (struct CpngColor color, int transparency);
+
+struct CpngColor cpng_color_set_red (struct CpngColor color, int value);
+struct CpngColor cpng_color_set_green (struct CpngColor color, int value);
+struct CpngColor cpng_color_set_blue (struct CpngColor color, int value);
 
 struct CpngColor cpng_color_darken (struct CpngColor color);
 struct CpngColor cpng_color_lighten (struct CpngColor color);
