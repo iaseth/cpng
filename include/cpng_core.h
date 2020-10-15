@@ -19,9 +19,8 @@ struct CpngImage {
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	struct CpngPixel primary_color;
-	struct CpngPixel secondary_color;
-	struct CpngPixel tertiary_color;
+	struct CpngPixel foreground;
+	struct CpngPixel background;
 
 	struct CpngPixel **rows;
 };
@@ -32,9 +31,8 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
-void cpng_image_set_primary_color (struct CpngImage *image, struct CpngPixel color);
-void cpng_image_set_secondary_color (struct CpngImage *image, struct CpngPixel color);
-void cpng_image_set_tertiary_color (struct CpngImage *image, struct CpngPixel color);
+void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color);
+void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color);
 
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height);
 void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width);

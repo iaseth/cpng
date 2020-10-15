@@ -16,11 +16,9 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->title[0] = '\0';
 
 	struct CpngPixel white = {255, 255, 255};
-	cpng_image_set_primary_color(image, white);
+	cpng_image_set_foreground_color(image, white);
 	struct CpngPixel black = {0, 0, 0};
-	cpng_image_set_secondary_color(image, black);
-	struct CpngPixel grey = {128, 128, 128};
-	cpng_image_set_tertiary_color(image, grey);
+	cpng_image_set_background_color(image, black);
 
 	image->rows = malloc(sizeof(struct CpngPixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
@@ -49,16 +47,12 @@ void cpng_image_set_title (struct CpngImage *image, char *title) {
 }
 
 
-void cpng_image_set_primary_color (struct CpngImage *image, struct CpngPixel color) {
-	image->primary_color = color;
+void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color) {
+	image->foreground = color;
 }
 
-void cpng_image_set_secondary_color (struct CpngImage *image, struct CpngPixel color) {
-	image->secondary_color = color;
-}
-
-void cpng_image_set_tertiary_color (struct CpngImage *image, struct CpngPixel color) {
-	image->tertiary_color = color;
+void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color) {
+	image->background = color;
 }
 
 
@@ -75,12 +69,12 @@ void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start
 	if (end_row > image->height) end_row = image->height;
 	if (end_col > image->width) end_col = image->width;
 
-	struct CpngPixel primary_color = image->primary_color;
+	struct CpngPixel color = image->foreground;
 	for (int row=start_row; row<end_row; row++) {
 		for (int col=start_col; col<end_col; col++) {
-			image->rows[row][col].red = primary_color.red;
-			image->rows[row][col].green = primary_color.green;
-			image->rows[row][col].blue = primary_color.blue;
+			image->rows[row][col].red = color.red;
+			image->rows[row][col].green = color.green;
+			image->rows[row][col].blue = color.blue;
 		}
 	}
 }
