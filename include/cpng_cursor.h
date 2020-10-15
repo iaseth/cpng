@@ -3,30 +3,30 @@
 
 #include "cpng_core.h"
 
-struct CpngPosition {
+struct CpngCursor {
 	struct CpngImage *parent;
 	int row, col;
 };
 
-struct CpngPosition cpng_position_set_parent (struct CpngPosition pos, struct CpngImage *parent);
+struct CpngCursor cpng_cursor_set_parent (struct CpngCursor pos, struct CpngImage *parent);
 
-struct CpngPosition cpng_position_move_to_bottom (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_left (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_right (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_top (struct CpngPosition pos);
+struct CpngCursor cpng_cursor_move_to_bottom (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_left (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_right (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_top (struct CpngCursor pos);
 
-struct CpngPosition cpng_position_move_to_bottom_left (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_bottom_right (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_top_left (struct CpngPosition pos);
-struct CpngPosition cpng_position_move_to_top_right (struct CpngPosition pos);
+struct CpngCursor cpng_cursor_move_to_bottom_left (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_bottom_right (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_top_left (struct CpngCursor pos);
+struct CpngCursor cpng_cursor_move_to_top_right (struct CpngCursor pos);
 
-struct CpngPosition cpng_position_move_down (struct CpngPosition pos, int offset);
-struct CpngPosition cpng_position_move_left (struct CpngPosition pos, int offset);
-struct CpngPosition cpng_position_move_right (struct CpngPosition pos, int offset);
-struct CpngPosition cpng_position_move_up (struct CpngPosition pos, int offset);
+struct CpngCursor cpng_cursor_move_down (struct CpngCursor pos, int offset);
+struct CpngCursor cpng_cursor_move_left (struct CpngCursor pos, int offset);
+struct CpngCursor cpng_cursor_move_right (struct CpngCursor pos, int offset);
+struct CpngCursor cpng_cursor_move_up (struct CpngCursor pos, int offset);
 
-struct CpngPosition cpng_position_move_to_down_right (struct CpngPosition pos, int offset_down, int offset_right);
-struct CpngPosition cpng_position_move_to_up_left (struct CpngPosition pos, int offset_up, int offset_left);
+struct CpngCursor cpng_cursor_move_to_down_right (struct CpngCursor pos, int offset_down, int offset_right);
+struct CpngCursor cpng_cursor_move_to_up_left (struct CpngCursor pos, int offset_up, int offset_left);
 
 
 
