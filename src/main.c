@@ -9,13 +9,13 @@ void png_image_stuff () {
 	struct CpngImage *image = get_new_cpng_image(3840, 2160);
 
 	cpng_image_set_author(image, "Igor");
-	cpng_image_set_filename(image, "x.png");
+	cpng_image_set_filename(image, "pngs/x.png");
 	cpng_image_set_title(image, "Example");
 
 	struct CpngPixel red = {240, 25, 25};
 	cpng_image_set_foreground_color(image, red);
 	cpng_image_add_border(image, 100);
-	cpng_image_add_border_with_offset(image, 400, 200);
+	cpng_image_add_border_with_offset(image, 400, 100);
 
 	cpng_image_print(image);
 	cpng_image_save_to_disk(image);
