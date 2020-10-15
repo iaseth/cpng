@@ -1,7 +1,9 @@
 AMP = @
 
 AR = ${AMP}ar
+
 CC = ${AMP}gcc
+CC_FLAGS = -fPIC -Wall
 
 INCLUDE_FLAG = -Iinclude
 LINK_FLAG = -lpng
@@ -35,7 +37,7 @@ ${MAIN_OBJ}: ${MAIN_SRC}
 	${CC} -c $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_OBJS}: build/%.o: src/%.c include/%.h
-	${CC} -c $< -o $@ ${INCLUDE_FLAG}
+	${CC} -c ${CC_FLAGS} $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_STATIC_LIB}: ${CPNG_OBJS}
 	${AR} rcs $@ $^
