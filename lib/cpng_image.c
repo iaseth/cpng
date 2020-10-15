@@ -197,17 +197,13 @@ void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int
 }
 
 
-void cpng_image_print (struct CpngImage *image) {
-	printf("CpngImage %s (%s) (%s)", image->title, image->author, image->filename);
-	printf("(%4d * %4d) [%4d, %4d]", image->width, image->height, image->cursor_row, image->cursor_col);
-	printf("\n");
-}
-
-void cpng_image_print_details (struct CpngImage *image) {
+void cpng_image_print_meta (struct CpngImage *image) {
 	printf("CpngImage: %s\n", image->title);
 	printf("   Author: %s\n", image->author);
 	printf(" Filename: %s\n", image->filename);
+}
 
+void cpng_image_print_colors (struct CpngImage *image) {
 	printf("   Colors: [");
 	printf("%s", image->colors[0].name);
 	for (int i = 1; i < MAX_COLOR_MEMORY; ++i) {
@@ -215,7 +211,9 @@ void cpng_image_print_details (struct CpngImage *image) {
 	}
 	printf("]\n");
 	printf("    Color: %s\n", image->colors[image->current_color_index].name);
+}
 
+void cpng_image_print_cursors (struct CpngImage *image) {
 	printf("  Cursors: [");
 	printf("(%d, %d)", image->cursors[0].row, image->cursors[0].col);
 	for (int i = 1; i < MAX_CURSOR_MEMORY; ++i) {
@@ -224,6 +222,17 @@ void cpng_image_print_details (struct CpngImage *image) {
 	printf("]\n");
 	struct CpngCursor *cursor = &image->cursors[image->current_cursor_index];
 	printf("   Cursor: R%d, C%d\n", cursor->row, cursor->col);
+}
+
+
+void cpng_image_print (struct CpngImage *image) {
+	printf("CpngImage '%s' (%4d x %4d) [%4d, %4d]\n", image->filename, image->width, image->height, image->cursor_row, image->cursor_col);
+}
+
+void cpng_image_print_details (struct CpngImage *image) {
+	cpng_image_print_meta(image);
+	cpng_image_print_colors(image);
+	cpng_image_print_cursors(image);
 }
 
 
