@@ -91,12 +91,12 @@ void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thic
 	cpng_image_add_rectangle(image, (image->height - offset - thickness), 0, image->width, thickness);
 }
 
-void cpng_image_add_rod_at_top (struct CpngImage *image, int offset, int thickness) {
-	//
+void cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickness) {
+	cpng_image_add_rectangle(image, 0, offset, thickness, image->height);
 }
 
-void cpng_image_add_rod_at_bottom (struct CpngImage *image, int offset, int thickness) {
-	//
+void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness) {
+	cpng_image_add_rectangle(image, 0, (image->width - offset - thickness), thickness, image->height);
 }
 
 

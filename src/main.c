@@ -16,8 +16,8 @@ void png_image_stuff () {
 	cpng_image_set_foreground_color(image, red);
 	cpng_image_add_rectangle(image, 100, 100, 200, 400);
 	cpng_image_add_square(image, 600, 500, 400);
-	cpng_image_add_bar_at_top(image, 100, 300);
-	cpng_image_add_bar_at_bottom(image, 100, 300);
+	cpng_image_add_rod_at_left(image, 100, 300);
+	cpng_image_add_rod_at_right(image, 100, 300);
 
 	cpng_image_print(image);
 	cpng_image_save_to_disk(image);
