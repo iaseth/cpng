@@ -15,7 +15,8 @@ void png_image_stuff () {
 	struct CpngPixel red = {240, 25, 25};
 	cpng_image_set_foreground_color(image, red);
 	cpng_image_add_border(image, 100);
-	cpng_image_add_border_with_offset(image, 400, 100);
+	cpng_image_add_border_with_offset(image, 400, 20);
+	cpng_image_add_border_with_offset(image, 440, 20);
 
 	cpng_image_print(image);
 	cpng_image_save_to_disk(image);
