@@ -88,6 +88,17 @@ void cpnd_image_move_cursor_up (struct CpngImage *image, int offset) {
 }
 
 
+void cpnd_image_move_cursor_down_right (struct CpngImage *image, int offset_down, int offset_right) {
+	cpnd_image_move_cursor_down(image, offset_down);
+	cpnd_image_move_cursor_right(image, offset_right);
+}
+
+void cpnd_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int offset_left) {
+	cpnd_image_move_cursor_up(image, offset_up);
+	cpnd_image_move_cursor_left(image, offset_left);
+}
+
+
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height) {
 	if (width <= 0 || height <= 0) return;
 	if (start_row >= image->height || start_col >= image->width) return;

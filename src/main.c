@@ -16,7 +16,7 @@ void png_image_stuff () {
 	cpng_image_print(image);
 	cpng_image_set_foreground_color(image, red);
 	cpng_image_print(image);
-	cpnd_image_move_cursor_down(image, 200);
+	cpnd_image_move_cursor_down_right(image, 200, 50);
 	cpng_image_print(image);
 	cpnd_image_move_cursor_up(image, 200);
 	cpng_image_print(image);
