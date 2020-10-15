@@ -126,6 +126,33 @@ void cpng_image_add_square (struct CpngImage *image, int start_row, int start_co
 	cpng_image_add_rectangle(image, start_row, start_col, width, width);
 }
 
+
+void cpng_image_add_circle (struct CpngImage *image, int start_row, int start_col, int radius) {
+	if (radius <= 0) return;
+	int centre_row = start_row + radius;
+	int centre_col = start_col + radius;
+
+	int end_row = centre_row + radius;
+	int end_col = centre_col + radius;
+
+	struct CpngPixel color = image->foreground;
+	int radius_squared = radius * radius;
+	for (int row=start_row; row<end_row; row++) {
+		int row_distance = abs(row - centre_row);
+		int row_distance_squared = (row_distance * row_distance);
+		for (int col=start_col; col<end_col; col++) {
+			int col_distance = abs(col - centre_col);
+			int col_distance_squared = (col_distance * col_distance);
+			if (radius_squared > row_distance_squared + col_distance_squared) {
+				image->rows[row][col].red = color.red;
+				image->rows[row][col].green = color.green;
+				image->rows[row][col].blue = color.blue;
+			}
+		}
+	}
+}
+
+
 void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness) {
 	cpng_image_add_rectangle(image, offset, 0, image->width, thickness);
 }
