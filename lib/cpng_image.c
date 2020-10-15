@@ -75,28 +75,45 @@ void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel 
 }
 
 
-void cpnd_image_move_cursor_down (struct CpngImage *image, int offset) {
+int cpng_image_next_cursor_index (struct CpngImage *image) {
+	if (image->current_cursor_index + 1 < MAX_CURSOR_MEMORY) {
+		return image->current_cursor_index + 1;
+	} else {
+		return 0;
+	}
+}
+
+int cpng_image_previous_cursor_index (struct CpngImage *image) {
+	if (image->current_cursor_index > 0) {
+		return image->current_cursor_index - 1;
+	} else {
+		return (MAX_CURSOR_MEMORY - 1);
+	}
+}
+
+
+void cpng_image_move_cursor_down (struct CpngImage *image, int offset) {
 	image->cursor_row = image->cursor_row + offset;
 	if (image->cursor_row >= image->height) {
 		image->cursor_row = image->height;
 	}
 }
 
-void cpnd_image_move_cursor_left (struct CpngImage *image, int offset) {
+void cpng_image_move_cursor_left (struct CpngImage *image, int offset) {
 	image->cursor_col = image->cursor_col - offset;
 	if (image->cursor_col < 0) {
 		image->cursor_col = 0;
 	}
 }
 
-void cpnd_image_move_cursor_right (struct CpngImage *image, int offset) {
+void cpng_image_move_cursor_right (struct CpngImage *image, int offset) {
 	image->cursor_col = image->cursor_col + offset;
 	if (image->cursor_col >= image->width) {
 		image->cursor_col = image->width;
 	}
 }
 
-void cpnd_image_move_cursor_up (struct CpngImage *image, int offset) {
+void cpng_image_move_cursor_up (struct CpngImage *image, int offset) {
 	image->cursor_row = image->cursor_row - offset;
 	if (image->cursor_row < 0) {
 		image->cursor_row = 0;
@@ -104,14 +121,14 @@ void cpnd_image_move_cursor_up (struct CpngImage *image, int offset) {
 }
 
 
-void cpnd_image_move_cursor_down_right (struct CpngImage *image, int offset_down, int offset_right) {
-	cpnd_image_move_cursor_down(image, offset_down);
-	cpnd_image_move_cursor_right(image, offset_right);
+void cpng_image_move_cursor_down_right (struct CpngImage *image, int offset_down, int offset_right) {
+	cpng_image_move_cursor_down(image, offset_down);
+	cpng_image_move_cursor_right(image, offset_right);
 }
 
-void cpnd_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int offset_left) {
-	cpnd_image_move_cursor_up(image, offset_up);
-	cpnd_image_move_cursor_left(image, offset_left);
+void cpng_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int offset_left) {
+	cpng_image_move_cursor_up(image, offset_up);
+	cpng_image_move_cursor_left(image, offset_left);
 }
 
 

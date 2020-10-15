@@ -17,9 +17,9 @@ void png_image_stuff () {
 	//cpng_image_print_details(image);
 
 	cpng_image_print_cursors(image);
-	cpnd_image_move_cursor_down_right(image, 200, 50);
+	cpng_image_move_cursor_down_right(image, 200, 50);
 	cpng_image_print_cursors(image);
-	cpnd_image_move_cursor_up(image, 200);
+	cpng_image_move_cursor_up(image, 200);
 	cpng_image_print_cursors(image);
 
 	cpng_image_add_circle(image, 800, 800, 200);
