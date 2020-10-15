@@ -10,7 +10,7 @@ RM = ${AMP}rm -f
 
 CPNG_NAMES = 
 CPNG_NAMES += cpng_common
-CPNG_NAMES += cpng_core
+CPNG_NAMES += cpng
 CPNG_NAMES += cpng_color
 CPNG_NAMES += cpng_cursor
 CPNG_NAMES += cpng_image

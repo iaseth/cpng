@@ -1,7 +1,7 @@
 #ifndef CPNG_CURSOR_H
 #define CPNG_CURSOR_H
 
-#include "cpng_core.h"
+#include "cpng.h"
 
 struct CpngCursor {
 	struct CpngImage *parent;

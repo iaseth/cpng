@@ -3,7 +3,7 @@
 #include <malloc.h>
 #include <png.h>
 
-#include "cpng_core.h"
+#include "cpng.h"
 
 void png_image_stuff () {
 	struct CpngImage *image = get_new_cpng_image(3840, 2160);
