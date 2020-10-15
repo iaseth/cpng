@@ -18,7 +18,7 @@ CPNG_NAMES += cpng_cursor
 CPNG_NAMES += cpng_image
 
 CPNG_OBJ_NAMES = ${addsuffix .o, ${CPNG_NAMES}}
-CPNG_OBJS = ${addprefix build/, ${CPNG_OBJ_NAMES}}
+CPNG_OBJS = ${addprefix build/obj/, ${CPNG_OBJ_NAMES}}
 
 CPNG_STATIC_LIB = build/libcpng.a
 CPNG_DYNAMIC_LIB = build/libcpng.so
@@ -36,7 +36,7 @@ debug:
 ${MAIN_OBJ}: ${MAIN_SRC}
 	${CC} -c $< -o $@ ${INCLUDE_FLAG}
 
-${CPNG_OBJS}: build/%.o: src/%.c include/%.h
+${CPNG_OBJS}: build/obj/%.o: src/%.c include/%.h
 	${CC} -c ${CC_FLAGS} $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_STATIC_LIB}: ${CPNG_OBJS}
