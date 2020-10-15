@@ -6,7 +6,7 @@
 
 #define MAX_STRING_LENGTH 100
 
-struct Pixel {
+struct CpngPixel {
 	uint8_t red, green, blue;
 };
 
@@ -19,7 +19,7 @@ struct CpngImage {
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	struct Pixel **rows;
+	struct CpngPixel **rows;
 };
 
 struct CpngImage *get_new_cpng_image (int width, int height);
@@ -28,9 +28,9 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
-void cpng_image_set_primary (struct CpngImage *image, struct Pixel color);
-void cpng_image_set_secondary (struct CpngImage *image, struct Pixel color);
-void cpng_image_set_tertiary (struct CpngImage *image, struct Pixel color);
+void cpng_image_set_primary (struct CpngImage *image, struct CpngPixel color);
+void cpng_image_set_secondary (struct CpngImage *image, struct CpngPixel color);
+void cpng_image_set_tertiary (struct CpngImage *image, struct CpngPixel color);
 
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height);
 void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width);

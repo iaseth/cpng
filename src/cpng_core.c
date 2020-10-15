@@ -15,9 +15,9 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
 
-	image->rows = malloc(sizeof(struct Pixel *) * image->height);
+	image->rows = malloc(sizeof(struct CpngPixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
-		image->rows[i] = malloc(sizeof(struct Pixel) * image->width);
+		image->rows[i] = malloc(sizeof(struct CpngPixel) * image->width);
 		for (int j = 0; j < image->width; ++j) {
 			image->rows[i][j].red = 0;
 			image->rows[i][j].green = 0;
