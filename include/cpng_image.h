@@ -5,8 +5,12 @@
 #include <png.h>
 
 #define MAX_STRING_LENGTH 100
+#define MAX_COLOR_MEMORY 20
+#define MAX_CURSOR_MEMORY 20
 
 #include "cpng_pixel.h"
+#include "cpng_color.h"
+#include "cpng_cursor.h"
 
 struct CpngImage {
 	int width;
@@ -15,6 +19,9 @@ struct CpngImage {
 
 	int cursor_row;
 	int cursor_col;
+
+	struct CpngColor colors[MAX_COLOR_MEMORY];
+	struct CpngCursor cursors[MAX_CURSOR_MEMORY];
 
 	char author[MAX_STRING_LENGTH];
 	char filename[MAX_STRING_LENGTH];
