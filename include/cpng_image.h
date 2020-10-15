@@ -42,6 +42,9 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
+int cpng_image_next_color_index (struct CpngImage *image);
+int cpng_image_previous_color_index (struct CpngImage *image);
+
 void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color);
 void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color);
 

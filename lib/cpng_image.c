@@ -66,6 +66,23 @@ void cpng_image_set_title (struct CpngImage *image, char *title) {
 }
 
 
+int cpng_image_next_color_index (struct CpngImage *image) {
+	if (image->current_color_index + 1 < MAX_COLOR_MEMORY) {
+		return image->current_color_index + 1;
+	} else {
+		return 0;
+	}
+}
+
+int cpng_image_previous_color_index (struct CpngImage *image) {
+	if (image->current_color_index > 0) {
+		return image->current_color_index - 1;
+	} else {
+		return (MAX_COLOR_MEMORY - 1);
+	}
+}
+
+
 void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color) {
 	image->foreground = color;
 }
