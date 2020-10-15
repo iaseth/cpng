@@ -6,6 +6,10 @@
 
 #define MAX_STRING_LENGTH 100
 
+struct Pixel {
+	uint8_t red, green, blue;
+};
+
 struct CpngImage {
 	int width;
 	int height;
@@ -15,9 +19,7 @@ struct CpngImage {
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	uint8_t **rows_red;
-	uint8_t **rows_green;
-	uint8_t **rows_blue;
+	struct Pixel **rows;
 };
 
 struct CpngImage *get_new_cpng_image (int width, int height);

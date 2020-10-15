@@ -15,19 +15,9 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
 
-	image->rows_red = malloc(sizeof(uint8_t *) * image->height);
+	image->rows = malloc(sizeof(struct Pixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
-		image->rows_red[i] = malloc(sizeof(uint8_t) * image->width);
-	}
-
-	image->rows_green = malloc(sizeof(uint8_t *) * image->height);
-	for (int i = 0; i < image->height; ++i) {
-		image->rows_green[i] = malloc(sizeof(uint8_t) * image->width);
-	}
-
-	image->rows_blue = malloc(sizeof(uint8_t *) * image->height);
-	for (int i = 0; i < image->height; ++i) {
-		image->rows_blue[i] = malloc(sizeof(uint8_t) * image->width);
+		image->rows[i] = malloc(sizeof(struct Pixel) * image->width);
 	}
 
 	return image;
@@ -57,19 +47,9 @@ int *cpng_image_save_to_disk (struct CpngImage *image) {
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image) {
 	for (int i = 0; i < image->height; ++i) {
-		free(image->rows_red[i]);
+		free(image->rows[i]);
 	}
-	free(image->rows_red);
-
-	for (int i = 0; i < image->height; ++i) {
-		free(image->rows_green[i]);
-	}
-	free(image->rows_green);
-
-	for (int i = 0; i < image->height; ++i) {
-		free(image->rows_blue[i]);
-	}
-	free(image->rows_blue);
+	free(image->rows);
 
 	free(image);
 	return NULL;
