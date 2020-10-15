@@ -36,7 +36,7 @@ debug:
 ${MAIN_OBJ}: ${MAIN_SRC}
 	${CC} -c $< -o $@ ${INCLUDE_FLAG}
 
-${CPNG_OBJS}: build/obj/%.o: src/%.c include/%.h
+${CPNG_OBJS}: build/obj/%.o: lib/%.c include/%.h
 	${CC} -c ${CC_FLAGS} $< -o $@ ${INCLUDE_FLAG}
 
 ${CPNG_STATIC_LIB}: ${CPNG_OBJS}
