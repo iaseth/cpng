@@ -62,6 +62,30 @@ void cpng_image_set_tertiary_color (struct CpngImage *image, struct CpngPixel co
 }
 
 
+void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height) {
+	if (width <= 0 || height <= 0) return;
+	if (start_row >= image->height || start_col >= image->width) return;
+
+	int end_row = start_row + height;
+	int end_col = start_col + width;
+
+	if (start_row < 0) start_row = 0;
+	if (start_col < 0) start_col = 0;
+
+	if (end_row > image->height) end_row = image->height;
+	if (end_col > image->width) end_col = image->width;
+
+	struct CpngPixel primary_color = image->primary_color;
+	for (int row=start_row; row<end_row; row++) {
+		for (int col=start_col; col<end_col; col++) {
+			image->rows[row][col].red = primary_color.red;
+			image->rows[row][col].green = primary_color.green;
+			image->rows[row][col].blue = primary_color.blue;
+		}
+	}
+}
+
+
 void cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
 }

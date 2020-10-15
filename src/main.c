@@ -11,6 +11,7 @@ void png_image_stuff () {
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_filename(image, "x.png");
 	cpng_image_set_title(image, "Example");
+	cpng_image_add_rectangle(image, 100, 100, 200, 400);
 
 	cpng_image_print(image);
 	cpng_image_save_to_disk(image);
