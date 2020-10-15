@@ -59,6 +59,35 @@ void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel 
 }
 
 
+void cpnd_image_move_cursor_down (struct CpngImage *image, int offset) {
+	image->cursor_row = image->cursor_row + offset;
+	if (image->cursor_row >= image->height) {
+		image->cursor_row = image->height;
+	}
+}
+
+void cpnd_image_move_cursor_left (struct CpngImage *image, int offset) {
+	image->cursor_col = image->cursor_col - offset;
+	if (image->cursor_col < 0) {
+		image->cursor_col = 0;
+	}
+}
+
+void cpnd_image_move_cursor_right (struct CpngImage *image, int offset) {
+	image->cursor_col = image->cursor_col + offset;
+	if (image->cursor_col >= image->width) {
+		image->cursor_col = image->width;
+	}
+}
+
+void cpnd_image_move_cursor_up (struct CpngImage *image, int offset) {
+	image->cursor_row = image->cursor_row - offset;
+	if (image->cursor_row < 0) {
+		image->cursor_row = 0;
+	}
+}
+
+
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height) {
 	if (width <= 0 || height <= 0) return;
 	if (start_row >= image->height || start_col >= image->width) return;
@@ -115,7 +144,9 @@ void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int
 
 
 void cpng_image_print (struct CpngImage *image) {
-	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
+	printf("CpngImage %s (%s) (%s)", image->title, image->author, image->filename);
+	printf("(%4d * %4d) [%4d, %4d]", image->width, image->height, image->cursor_row, image->cursor_col);
+	printf("\n");
 }
 
 void cpng_image_save_to_disk (struct CpngImage *image) {
