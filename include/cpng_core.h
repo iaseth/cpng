@@ -6,9 +6,7 @@
 
 #define MAX_STRING_LENGTH 100
 
-struct CpngPixel {
-	uint8_t red, green, blue;
-};
+#include "cpng_pixel.h"
 
 struct CpngImage {
 	int width;
