@@ -10,6 +10,7 @@ RM = ${AMP}rm -f
 
 CPNG_NAMES = 
 CPNG_NAMES += cpng_common
+CPNG_NAMES += cpng_core
 
 CPNG_OBJ_NAMES = ${addsuffix .o, ${CPNG_NAMES}}
 CPNG_OBJS = ${addprefix build/, ${CPNG_OBJ_NAMES}}
