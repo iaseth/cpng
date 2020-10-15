@@ -44,6 +44,7 @@ void cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickn
 void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness);
 
 void cpng_image_add_border (struct CpngImage *image, int thickness);
+void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int thickness);
 
 void cpng_image_print (struct CpngImage *image);
 void cpng_image_save_to_disk (struct CpngImage *image);

@@ -100,10 +100,14 @@ void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thick
 }
 
 void cpng_image_add_border (struct CpngImage *image, int thickness) {
-	cpng_image_add_bar_at_top(image, 0, thickness);
-	cpng_image_add_bar_at_bottom(image, 0, thickness);
-	cpng_image_add_rod_at_left(image, 0, thickness);
-	cpng_image_add_rod_at_right(image, 0, thickness);
+	cpng_image_add_border_with_offset(image, 0, thickness);
+}
+
+void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int thickness) {
+	cpng_image_add_bar_at_top(image, offset, thickness);
+	cpng_image_add_bar_at_bottom(image, offset, thickness);
+	cpng_image_add_rod_at_left(image, offset, thickness);
+	cpng_image_add_rod_at_right(image, offset, thickness);
 }
 
 

@@ -16,7 +16,8 @@ void png_image_stuff () {
 	cpng_image_set_foreground_color(image, red);
 	cpng_image_add_rectangle(image, 100, 100, 200, 400);
 	cpng_image_add_square(image, 600, 500, 400);
-	cpng_image_add_border(image, 300);
+	cpng_image_add_border(image, 100);
+	cpng_image_add_border_with_offset(image, 400, 200);
 
 	cpng_image_print(image);
 	cpng_image_save_to_disk(image);
