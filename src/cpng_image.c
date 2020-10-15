@@ -259,7 +259,7 @@ void cpng_image_save_to_disk (struct CpngImage *image) {
 	}
 
 	if (png_ptr != NULL) {
-		png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+		png_destroy_write_struct(&png_ptr, &info_ptr);
 	}
 
 	if (row != NULL) {
