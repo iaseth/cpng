@@ -9,12 +9,16 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image = malloc(sizeof(struct CpngImage));
 	image->width = width;
 	image->height = height;
+	image->status = 0;
 
 	image->author[0] = '\0';
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
 
-	image->data = NULL;
+	image->rows = malloc(sizeof(uint8_t *) * image->height);
+	for (int i = 0; i < image->height; ++i) {
+		image->rows[i] = malloc(sizeof(uint8_t) * image->width);
+	}
 
 	return image;
 }
@@ -42,6 +46,10 @@ int *cpng_image_save_to_disk (struct CpngImage *image) {
 }
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image) {
+	for (int i = 0; i < image->height; ++i) {
+		free(image->rows[i]);
+	}
+	free(image->rows);
 	free(image);
 	return NULL;
 }

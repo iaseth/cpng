@@ -9,12 +9,13 @@
 struct CpngImage {
 	int width;
 	int height;
+	int status;
 
 	char author[MAX_STRING_LENGTH];
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	uint8_t **data;
+	uint8_t **rows;
 };
 
 struct CpngImage *get_new_cpng_image (int width, int height);
