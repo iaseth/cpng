@@ -20,7 +20,10 @@ struct CpngImage {
 	int cursor_row;
 	int cursor_col;
 
+	int current_color_index;
 	struct CpngColor colors[MAX_COLOR_MEMORY];
+
+	int current_cursor_index;
 	struct CpngCursor cursors[MAX_CURSOR_MEMORY];
 
 	char author[MAX_STRING_LENGTH];
@@ -65,6 +68,8 @@ void cpng_image_add_border (struct CpngImage *image, int thickness);
 void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int thickness);
 
 void cpng_image_print (struct CpngImage *image);
+void cpng_image_print_details (struct CpngImage *image);
+
 void cpng_image_save_to_disk (struct CpngImage *image);
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image);

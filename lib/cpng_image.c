@@ -14,14 +14,16 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->cursor_row = 0;
 	image->cursor_col = 0;
 
+	image->current_color_index = 0;
 	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
 		image->colors[i].red = 0;
 		image->colors[i].green = 0;
 		image->colors[i].blue = 0;
 		image->colors[i].transparency = 0;
-		strcpy(image->colors[i].name, "Unnamed");
+		strcpy(image->colors[i].name, "black");
 	}
 
+	image->current_cursor_index = 0;
 	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
 		image->cursors[i].row = 0;
 		image->cursors[i].col = 0;
@@ -200,6 +202,30 @@ void cpng_image_print (struct CpngImage *image) {
 	printf("(%4d * %4d) [%4d, %4d]", image->width, image->height, image->cursor_row, image->cursor_col);
 	printf("\n");
 }
+
+void cpng_image_print_details (struct CpngImage *image) {
+	printf("CpngImage: %s\n", image->title);
+	printf("   Author: %s\n", image->author);
+	printf(" Filename: %s\n", image->filename);
+
+	printf("   Colors: [");
+	printf("%s", image->colors[0].name);
+	for (int i = 1; i < MAX_COLOR_MEMORY; ++i) {
+		printf(", %s", image->colors[i].name);
+	}
+	printf("]\n");
+	printf("    Color: %s\n", image->colors[image->current_color_index].name);
+
+	printf("  Cursors: [");
+	printf("(%d, %d)", image->cursors[0].row, image->cursors[0].col);
+	for (int i = 1; i < MAX_CURSOR_MEMORY; ++i) {
+		printf(", (%d, %d)", image->cursors[i].row, image->cursors[i].col);
+	}
+	printf("]\n");
+	struct CpngCursor *cursor = &image->cursors[image->current_cursor_index];
+	printf("   Cursor: R%d, C%d\n", cursor->row, cursor->col);
+}
+
 
 void cpng_image_save_to_disk (struct CpngImage *image) {
 	FILE *fp = NULL;
