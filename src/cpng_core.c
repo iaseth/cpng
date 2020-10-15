@@ -31,12 +31,12 @@ void cpng_image_set_title (struct CpngImage *image, char *title) {
 	strcpy(image->title, title);
 }
 
-int *print_cpng_image (struct CpngImage *image) {
+int *cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
 	return 0;
 }
 
-int *save_cpng_image (struct CpngImage *image) {
+int *cpng_image_save_to_disk (struct CpngImage *image) {
 	printf("Saved CpngImage: '%s' [%d * %d]\n", image->filename, image->width, image->height);
 	return 0;
 }

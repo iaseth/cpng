@@ -23,8 +23,8 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
-int *print_cpng_image (struct CpngImage *image);
-int *save_cpng_image (struct CpngImage *image);
+int *cpng_image_print (struct CpngImage *image);
+int *cpng_image_save_to_disk (struct CpngImage *image);
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image);
 
