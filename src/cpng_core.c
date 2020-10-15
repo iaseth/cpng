@@ -79,6 +79,10 @@ void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start
 	}
 }
 
+void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width) {
+	cpng_image_add_rectangle(image, start_row, start_col, width, width);
+}
+
 
 void cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
