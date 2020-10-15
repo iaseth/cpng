@@ -99,6 +99,13 @@ void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thick
 	cpng_image_add_rectangle(image, 0, (image->width - offset - thickness), thickness, image->height);
 }
 
+void cpng_image_add_border (struct CpngImage *image, int thickness) {
+	cpng_image_add_bar_at_top(image, 0, thickness);
+	cpng_image_add_bar_at_bottom(image, 0, thickness);
+	cpng_image_add_rod_at_left(image, 0, thickness);
+	cpng_image_add_rod_at_right(image, 0, thickness);
+}
+
 
 void cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
