@@ -11,6 +11,9 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->height = height;
 	image->code = 0;
 
+	image->cursor_row = 0;
+	image->cursor_col = 0;
+
 	image->author[0] = '\0';
 	image->filename[0] = '\0';
 	image->title[0] = '\0';

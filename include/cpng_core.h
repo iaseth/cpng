@@ -15,6 +15,9 @@ struct CpngImage {
 	int height;
 	int code;
 
+	int cursor_row;
+	int cursor_col;
+
 	char author[MAX_STRING_LENGTH];
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
