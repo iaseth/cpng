@@ -15,6 +15,13 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
 
+	struct CpngPixel white = {255, 255, 255};
+	cpng_image_set_primary_color(image, white);
+	struct CpngPixel black = {0, 0, 0};
+	cpng_image_set_secondary_color(image, black);
+	struct CpngPixel grey = {128, 128, 128};
+	cpng_image_set_tertiary_color(image, grey);
+
 	image->rows = malloc(sizeof(struct CpngPixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
 		image->rows[i] = malloc(sizeof(struct CpngPixel) * image->width);
@@ -28,6 +35,7 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	return image;
 }
 
+
 void cpng_image_set_author (struct CpngImage *image, char *author) {
 	strcpy(image->author, author);
 }
@@ -39,6 +47,20 @@ void cpng_image_set_filename (struct CpngImage *image, char *filename) {
 void cpng_image_set_title (struct CpngImage *image, char *title) {
 	strcpy(image->title, title);
 }
+
+
+void cpng_image_set_primary_color (struct CpngImage *image, struct CpngPixel color) {
+	image->primary_color = color;
+}
+
+void cpng_image_set_secondary_color (struct CpngImage *image, struct CpngPixel color) {
+	image->secondary_color = color;
+}
+
+void cpng_image_set_tertiary_color (struct CpngImage *image, struct CpngPixel color) {
+	image->tertiary_color = color;
+}
+
 
 void cpng_image_print (struct CpngImage *image) {
 	printf("CpngImage %s (%s) [%d * %d] (%s)\n", image->title, image->author, image->width, image->height, image->filename);
@@ -125,6 +147,7 @@ void cpng_image_save_to_disk (struct CpngImage *image) {
 
 	printf("Saved CpngImage: '%s' [%d * %d]\n", image->filename, image->width, image->height);
 }
+
 
 struct CpngImage *delete_cpng_image (struct CpngImage *image) {
 	for (int i = 0; i < image->height; ++i) {
