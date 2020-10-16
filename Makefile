@@ -15,6 +15,7 @@ CPNG_NAMES += cpng_common
 CPNG_NAMES += cpng
 CPNG_NAMES += cpng_color
 CPNG_NAMES += cpng_cursor
+CPNG_NAMES += cpng_env
 CPNG_NAMES += cpng_image
 
 CPNG_OBJ_NAMES = ${addsuffix .o, ${CPNG_NAMES}}
