@@ -14,6 +14,9 @@ struct CpngEnv {
 
 struct CpngEnv *cpng_env_new ();
 
+void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename);
+void cpng_env_print_colors (struct CpngEnv *env);
+
 struct CpngEnv *cpng_env_delete (struct CpngEnv *env);
 
 

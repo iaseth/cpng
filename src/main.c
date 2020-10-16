@@ -7,6 +7,9 @@
 
 void png_image_stuff () {
 	struct CpngEnv *env = cpng_env_new();
+	cpng_env_add_colors_from_file(env, "data/rgba.txt");
+	cpng_env_print_colors(env);
+
 	struct CpngImage *image = get_new_cpng_image(3840, 2160);
 
 	cpng_image_set_author(image, "Igor");
