@@ -119,6 +119,45 @@ void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y
 }
 
 
+void cpng_image_move_cursor_to_bottom (struct CpngImage *image) {
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	cpng_image_move_cursor_to_xy(image, image->height - 1, cursor.col);
+}
+
+void cpng_image_move_cursor_to_left (struct CpngImage *image) {
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	cpng_image_move_cursor_to_xy(image, cursor.row, 0);
+}
+
+void cpng_image_move_cursor_to_right (struct CpngImage *image) {
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	cpng_image_move_cursor_to_xy(image, cursor.row, image->width - 1);
+}
+
+void cpng_image_move_cursor_to_top (struct CpngImage *image) {
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	cpng_image_move_cursor_to_xy(image, 0, cursor.col);
+}
+
+
+void cpng_image_move_cursor_to_bottom_left (struct CpngImage *image) {
+	cpng_image_move_cursor_to_xy(image, image->height - 1, 0);
+}
+
+void cpng_image_move_cursor_to_bottom_right (struct CpngImage *image) {
+	cpng_image_move_cursor_to_xy(image, image->height - 1, image->width - 1);
+}
+
+void cpng_image_move_cursor_to_top_left (struct CpngImage *image) {
+	cpng_image_move_cursor_to_xy(image, 0, 0);
+}
+
+void cpng_image_move_cursor_to_top_right (struct CpngImage *image) {
+	cpng_image_move_cursor_to_xy(image, 0, image->width - 1);
+}
+
+
+
 void cpng_image_move_cursor_down (struct CpngImage *image, int offset) {
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
 	cpng_image_move_cursor_to_xy(image, cursor.row + offset, cursor.col);
