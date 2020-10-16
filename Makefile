@@ -45,7 +45,7 @@ ${CPNG_STATIC_LIB}: ${CPNG_OBJS}
 ${CPNG_DYNAMIC_LIB}: ${CPNG_OBJS}
 	${CC} -shared $^ -o $@
 
-${BIN}: ${MAIN_OBJ} ${CPNG_OBJS}
+${BIN}: ${MAIN_OBJ} ${CPNG_STATIC_LIB}
 	${CC} $^ -o $@ ${LINK_FLAG}
 
 lib: ${CPNG_STATIC_LIB} ${CPNG_DYNAMIC_LIB}
