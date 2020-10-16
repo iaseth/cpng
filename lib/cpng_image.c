@@ -218,10 +218,14 @@ void cpng_image_add_square (struct CpngImage *image, int start_row, int start_co
 }
 
 
-void cpng_image_add_circle (struct CpngImage *image, int start_row, int start_col, int radius) {
+void cpng_image_add_circle (struct CpngImage *image, int radius) {
 	if (radius <= 0) return;
-	int centre_row = start_row + radius;
-	int centre_col = start_col + radius;
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	int centre_row = cursor.row;
+	int centre_col = cursor.col;
+
+	int start_row = centre_row - radius;
+	int start_col = centre_col - radius;
 
 	int end_row = centre_row + radius;
 	int end_col = centre_col + radius;
