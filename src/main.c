@@ -6,6 +6,7 @@
 #include "cpng.h"
 
 void png_image_stuff () {
+	struct CpngEnv *env = cpng_env_new();
 	struct CpngImage *image = get_new_cpng_image(3840, 2160);
 
 	cpng_image_set_author(image, "Igor");
@@ -37,6 +38,7 @@ void png_image_stuff () {
 
 	cpng_image_save_to_disk(image);
 	image = delete_cpng_image(image);
+	env = cpng_env_delete(env);
 }
 
 int main (int argc, char const *argv[]) {

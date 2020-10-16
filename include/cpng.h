@@ -2,6 +2,7 @@
 #define CPNG_H
 
 #include "cpng_image.h"
+#include "cpng_env.h"
 
 
 
