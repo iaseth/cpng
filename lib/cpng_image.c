@@ -238,6 +238,12 @@ void cpng_image_add_square (struct CpngImage *image, int width) {
 }
 
 
+void cpng_image_add_plus (struct CpngImage *image, int width, int thickness) {
+	cpng_image_add_rectangle(image, width, thickness);
+	cpng_image_add_rectangle(image, thickness, width);
+}
+
+
 void cpng_image_add_circle (struct CpngImage *image, int radius) {
 	if (radius <= 0) return;
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];

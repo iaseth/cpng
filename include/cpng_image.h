@@ -81,6 +81,8 @@ void cpng_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int
 void cpng_image_add_rectangle (struct CpngImage *image, int width, int height);
 void cpng_image_add_square (struct CpngImage *image, int width);
 
+void cpng_image_add_plus (struct CpngImage *image, int width, int thickness);
+
 void cpng_image_add_circle (struct CpngImage *image, int radius);
 
 void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness);
