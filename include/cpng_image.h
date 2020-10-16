@@ -53,6 +53,8 @@ void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel 
 int cpng_image_next_cursor_index (struct CpngImage *image);
 int cpng_image_previous_cursor_index (struct CpngImage *image);
 
+void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y);
+
 void cpng_image_move_cursor_to_bottom (struct CpngImage *image);
 void cpng_image_move_cursor_to_left (struct CpngImage *image);
 void cpng_image_move_cursor_to_right (struct CpngImage *image);

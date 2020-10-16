@@ -108,32 +108,43 @@ int cpng_image_previous_cursor_index (struct CpngImage *image) {
 }
 
 
+void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y) {
+	if (row_x < 0 || col_y < 0) return;
+	if (row_x >= image->height || col_y >= image->width) return;
+
+	int next_cursor_index = cpng_image_next_cursor_index(image);
+	image->cursors[next_cursor_index].row = row_x;
+	image->cursors[next_cursor_index].col = col_y;
+	image->current_cursor_index = next_cursor_index;
+}
+
+
 void cpng_image_move_cursor_down (struct CpngImage *image, int offset) {
-	image->cursor_row = image->cursor_row + offset;
-	if (image->cursor_row >= image->height) {
-		image->cursor_row = image->height;
-	}
+	int current_cursor_index = image->current_cursor_index;
+	int row = image->cursors[current_cursor_index].row + offset;
+	int col = image->cursors[current_cursor_index].col;
+	cpng_image_move_cursor_to_xy(image, row, col);
 }
 
 void cpng_image_move_cursor_left (struct CpngImage *image, int offset) {
-	image->cursor_col = image->cursor_col - offset;
-	if (image->cursor_col < 0) {
-		image->cursor_col = 0;
-	}
+	int current_cursor_index = image->current_cursor_index;
+	int row = image->cursors[current_cursor_index].row;
+	int col = image->cursors[current_cursor_index].col - offset;
+	cpng_image_move_cursor_to_xy(image, row, col);
 }
 
 void cpng_image_move_cursor_right (struct CpngImage *image, int offset) {
-	image->cursor_col = image->cursor_col + offset;
-	if (image->cursor_col >= image->width) {
-		image->cursor_col = image->width;
-	}
+	int current_cursor_index = image->current_cursor_index;
+	int row = image->cursors[current_cursor_index].row;
+	int col = image->cursors[current_cursor_index].col + offset;
+	cpng_image_move_cursor_to_xy(image, row, col);
 }
 
 void cpng_image_move_cursor_up (struct CpngImage *image, int offset) {
-	image->cursor_row = image->cursor_row - offset;
-	if (image->cursor_row < 0) {
-		image->cursor_row = 0;
-	}
+	int current_cursor_index = image->current_cursor_index;
+	int row = image->cursors[current_cursor_index].row - offset;
+	int col = image->cursors[current_cursor_index].col;
+	cpng_image_move_cursor_to_xy(image, row, col);
 }
 
 
@@ -250,7 +261,7 @@ void cpng_image_print_cursors (struct CpngImage *image) {
 	printf("  Cursors: [");
 	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
 		if (i > 0) printf(", ");
-		if (i == image->current_color_index) printf("@");
+		if (i == image->current_cursor_index) printf("@");
 		printf("(%d, %d)", image->cursors[i].row, image->cursors[i].col);
 	}
 	printf("]\n");
