@@ -121,17 +121,17 @@ void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y
 
 void cpng_image_cursor_flip_diagonal (struct CpngImage *image) {
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
-	cpng_image_move_cursor_to_xy(image, (image->height - cursor.row), (image->width - cursor.col));
+	cpng_image_move_cursor_to_xy(image, (image->height - cursor.row - 1), (image->width - cursor.col - 1));
 }
 
 void cpng_image_cursor_flip_horizontal (struct CpngImage *image) {
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
-	cpng_image_move_cursor_to_xy(image, (image->height - cursor.row), cursor.col);
+	cpng_image_move_cursor_to_xy(image, (image->height - cursor.row - 1), cursor.col);
 }
 
 void cpng_image_cursor_flip_vertical (struct CpngImage *image) {
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
-	cpng_image_move_cursor_to_xy(image, cursor.row, (image->width - cursor.col));
+	cpng_image_move_cursor_to_xy(image, cursor.row, (image->width - cursor.col - 1));
 }
 
 
