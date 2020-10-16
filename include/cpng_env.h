@@ -6,10 +6,10 @@
 
 struct CpngEnv {
 	int number_of_colors;
-	struct CpngColor *colors;
+	struct CpngColor **colors;
 
 	int number_of_images;
-	struct CpngImage *images;
+	struct CpngImage **images;
 };
 
 struct CpngEnv *cpng_env_new ();

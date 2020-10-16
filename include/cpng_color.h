@@ -5,7 +5,7 @@
 
 struct CpngColor {
 	uint8_t red, green, blue, transparency;
-	char name[20];
+	char name[32];
 };
 
 void cpng_color_print (struct CpngColor *color);
