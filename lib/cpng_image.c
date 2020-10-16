@@ -27,7 +27,6 @@ struct CpngImage *get_new_cpng_image (int width, int height) {
 	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
 		image->cursors[i].row = 0;
 		image->cursors[i].col = 0;
-		image->cursors[i].parent = image;
 	}
 
 	image->author[0] = '\0';

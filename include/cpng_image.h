@@ -42,14 +42,26 @@ void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
 void cpng_image_set_title (struct CpngImage *image, char *title);
 
+
 int cpng_image_next_color_index (struct CpngImage *image);
 int cpng_image_previous_color_index (struct CpngImage *image);
 
 void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color);
 void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color);
 
+
 int cpng_image_next_cursor_index (struct CpngImage *image);
 int cpng_image_previous_cursor_index (struct CpngImage *image);
+
+void cpng_image_move_cursor_to_bottom (struct CpngImage *image);
+void cpng_image_move_cursor_to_left (struct CpngImage *image);
+void cpng_image_move_cursor_to_right (struct CpngImage *image);
+void cpng_image_move_cursor_to_top (struct CpngImage *image);
+
+void cpng_image_move_cursor_to_bottom_left (struct CpngImage *image);
+void cpng_image_move_cursor_to_bottom_right (struct CpngImage *image);
+void cpng_image_move_cursor_to_top_left (struct CpngImage *image);
+void cpng_image_move_cursor_to_top_right (struct CpngImage *image);
 
 void cpng_image_move_cursor_down (struct CpngImage *image, int offset);
 void cpng_image_move_cursor_left (struct CpngImage *image, int offset);
@@ -58,6 +70,7 @@ void cpng_image_move_cursor_up (struct CpngImage *image, int offset);
 
 void cpng_image_move_cursor_down_right (struct CpngImage *image, int offset_down, int offset_right);
 void cpng_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int offset_left);
+
 
 void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height);
 void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width);
