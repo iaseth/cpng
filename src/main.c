@@ -25,7 +25,7 @@ void png_image_stuff () {
 	cpng_image_move_cursor_to_xy(image, 800, 800);
 	cpng_image_add_circle(image, 200);
 	cpng_image_cursor_flip_diagonal(image);
-	cpng_image_add_circle(image, 200);
+	cpng_image_add_rectangle(image, 200, 400);
 	cpng_image_add_border(image, 100);
 	cpng_image_add_border_with_offset(image, 400, 20);
 	cpng_image_add_border_with_offset(image, 440, 20);

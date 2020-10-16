@@ -207,9 +207,12 @@ void cpng_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int
 }
 
 
-void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start_col, int width, int height) {
+void cpng_image_add_rectangle (struct CpngImage *image, int width, int height) {
 	if (width <= 0 || height <= 0) return;
-	if (start_row >= image->height || start_col >= image->width) return;
+
+	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
+	int start_row = cursor.row - height / 2;
+	int start_col = cursor.col - width / 2;
 
 	int end_row = start_row + height;
 	int end_col = start_col + width;
@@ -230,8 +233,8 @@ void cpng_image_add_rectangle (struct CpngImage *image, int start_row, int start
 	}
 }
 
-void cpng_image_add_square (struct CpngImage *image, int start_row, int start_col, int width) {
-	cpng_image_add_rectangle(image, start_row, start_col, width, width);
+void cpng_image_add_square (struct CpngImage *image, int width) {
+	cpng_image_add_rectangle(image, width, width);
 }
 
 
@@ -266,19 +269,19 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 
 
 void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_add_rectangle(image, offset, 0, image->width, thickness);
+	//cpng_image_add_rectangle(image, offset, 0, image->width, thickness);
 }
 
 void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_add_rectangle(image, (image->height - offset - thickness), 0, image->width, thickness);
+	//cpng_image_add_rectangle(image, (image->height - offset - thickness), 0, image->width, thickness);
 }
 
 void cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_add_rectangle(image, 0, offset, thickness, image->height);
+	//cpng_image_add_rectangle(image, 0, offset, thickness, image->height);
 }
 
 void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_add_rectangle(image, 0, (image->width - offset - thickness), thickness, image->height);
+	//cpng_image_add_rectangle(image, 0, (image->width - offset - thickness), thickness, image->height);
 }
 
 void cpng_image_add_border (struct CpngImage *image, int thickness) {
