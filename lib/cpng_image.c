@@ -91,7 +91,7 @@ void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel 
 }
 
 
-int cpng_image_next_cursor_index (struct CpngImage *image) {
+int cpng_image_get_next_cursor_index (struct CpngImage *image) {
 	if (image->current_cursor_index + 1 < MAX_CURSOR_MEMORY) {
 		return image->current_cursor_index + 1;
 	} else {
@@ -99,7 +99,7 @@ int cpng_image_next_cursor_index (struct CpngImage *image) {
 	}
 }
 
-int cpng_image_previous_cursor_index (struct CpngImage *image) {
+int cpng_image_get_previous_cursor_index (struct CpngImage *image) {
 	if (image->current_cursor_index > 0) {
 		return image->current_cursor_index - 1;
 	} else {
@@ -112,7 +112,7 @@ void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y
 	if (row_x < 0 || col_y < 0) return;
 	if (row_x >= image->height || col_y >= image->width) return;
 
-	int next_cursor_index = cpng_image_next_cursor_index(image);
+	int next_cursor_index = cpng_image_get_next_cursor_index(image);
 	image->cursors[next_cursor_index].row = row_x;
 	image->cursors[next_cursor_index].col = col_y;
 	image->current_cursor_index = next_cursor_index;
