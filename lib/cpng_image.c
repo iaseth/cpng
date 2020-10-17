@@ -28,11 +28,12 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 
 	image->current_color_index = 0;
 	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
-		image->colors[i].red = 0;
-		image->colors[i].green = 0;
-		image->colors[i].blue = 0;
-		image->colors[i].transparency = 0;
-		strcpy(image->colors[i].name, "black");
+		struct CpngColor *color = env->colors[i];
+		image->colors[i].red = color->red;
+		image->colors[i].green = color->green;
+		image->colors[i].blue = color->blue;
+		image->colors[i].transparency = color->transparency;
+		strcpy(image->colors[i].name, color->name);
 	}
 
 	image->current_cursor_index = 0;
