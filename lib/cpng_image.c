@@ -92,7 +92,7 @@ void cpng_image_add_color (struct CpngImage *image, char *color_name) {
 		color = image->env->colors[i];
 		if (strcmp(color_name, color->name) == 0) {
 			image->colors[next_index] = color;
-			printf("%s: [%d %d %d]\n", color->name, color->red, color->green, color->blue);
+			image->current_color_index = next_index;
 			return;
 		}
 	}
