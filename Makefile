@@ -55,8 +55,8 @@ ${CPNG_DYNAMIC_LIB}: ${CPNG_OBJS}
 ${BIN}: ${MAIN_OBJ} ${CPNG_STATIC_LIB}
 	${CC} $^ -o $@ ${LINK_FLAG}
 
-${CPNG_APP_EXES}: build/app/%.out: app/%.c
-	${CC} -o $@ $<
+${CPNG_APP_EXES}: build/app/%.out: app/%.c ${CPNG_STATIC_LIB}
+	${CC} $^ -o $@ ${INCLUDE_FLAG} ${LINK_FLAG}
 
 app: ${CPNG_APP_EXES}
 
