@@ -24,6 +24,12 @@ CPNG_OBJS = ${addprefix build/obj/, ${CPNG_OBJ_NAMES}}
 CPNG_STATIC_LIB = build/libcpng.a
 CPNG_DYNAMIC_LIB = build/libcpng.so
 
+CPNG_APP_NAMES = 
+CPNG_APP_NAMES += quad
+
+CPNG_APP_EXE_PATHS = ${addsuffix .out, ${CPNG_APP_NAMES}}
+CPNG_APP_EXES = ${addprefix build/app/, ${CPNG_APP_EXE_PATHS}}
+
 MAIN_SRC = src/main.c
 MAIN_OBJ = build/main.o
 
@@ -48,6 +54,11 @@ ${CPNG_DYNAMIC_LIB}: ${CPNG_OBJS}
 
 ${BIN}: ${MAIN_OBJ} ${CPNG_STATIC_LIB}
 	${CC} $^ -o $@ ${LINK_FLAG}
+
+${CPNG_APP_EXES}: build/app/%.out: app/%.c
+	${CC} -o $@ $<
+
+app: ${CPNG_APP_EXES}
 
 lib: ${CPNG_STATIC_LIB} ${CPNG_DYNAMIC_LIB}
 
