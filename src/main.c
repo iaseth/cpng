@@ -21,6 +21,7 @@ void png_image_stuff () {
 	cpng_image_print_cursors(image);
 	cpng_image_print_colors(image);
 	cpng_image_switch_color_next_nth(image, 15);
+	cpng_image_add_color(image, "zaffre");
 	cpng_image_print_colors(image);
 	cpng_image_move_cursor_down_right(image, 200, 50);
 	cpng_image_print_cursors(image);

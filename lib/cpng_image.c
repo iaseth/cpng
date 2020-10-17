@@ -28,12 +28,7 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 
 	image->current_color_index = 0;
 	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
-		struct CpngColor *color = env->colors[i];
-		image->colors[i].red = color->red;
-		image->colors[i].green = color->green;
-		image->colors[i].blue = color->blue;
-		image->colors[i].transparency = color->transparency;
-		strcpy(image->colors[i].name, color->name);
+		image->colors[i] = env->colors[i];
 	}
 
 	image->current_cursor_index = 0;
@@ -89,6 +84,22 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 	}
 }
 
+
+void cpng_image_add_color (struct CpngImage *image, char *color_name) {
+	struct CpngColor *color = NULL;
+	//struct CpngColor next_color = image->colo;
+	for (int i = 0; i < image->env->number_of_colors; ++i) {
+		color = image->env->colors[i];
+		if (strcmp(color_name, color->name) == 0) {
+			printf("Found: %s\n", color->name);
+			return;
+		}
+	}
+}
+
+void cpng_image_switch_color (struct CpngImage *image, char *color_name) {
+	//
+}
 
 void cpng_image_switch_color_next (struct CpngImage *image) {
 	image->current_color_index = cpng_image_next_color_index(image);
@@ -243,12 +254,12 @@ void cpng_image_add_rectangle (struct CpngImage *image, int width, int height) {
 	if (end_row > image->height) end_row = image->height;
 	if (end_col > image->width) end_col = image->width;
 
-	struct CpngColor color = image->colors[image->current_color_index];
+	struct CpngColor *color = image->colors[image->current_color_index];
 	for (int row=start_row; row<end_row; row++) {
 		for (int col=start_col; col<end_col; col++) {
-			image->rows[row][col].red = color.red;
-			image->rows[row][col].green = color.green;
-			image->rows[row][col].blue = color.blue;
+			image->rows[row][col].red = color->red;
+			image->rows[row][col].green = color->green;
+			image->rows[row][col].blue = color->blue;
 		}
 	}
 }
@@ -276,7 +287,7 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 	int end_row = centre_row + radius;
 	int end_col = centre_col + radius;
 
-	struct CpngColor color = image->colors[image->current_color_index];
+	struct CpngColor *color = image->colors[image->current_color_index];
 	int radius_squared = radius * radius;
 	for (int row=start_row; row<end_row; row++) {
 		int row_distance = abs(row - centre_row);
@@ -285,9 +296,9 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 			int col_distance = abs(col - centre_col);
 			int col_distance_squared = (col_distance * col_distance);
 			if (radius_squared > row_distance_squared + col_distance_squared) {
-				image->rows[row][col].red = color.red;
-				image->rows[row][col].green = color.green;
-				image->rows[row][col].blue = color.blue;
+				image->rows[row][col].red = color->red;
+				image->rows[row][col].green = color->green;
+				image->rows[row][col].blue = color->blue;
 			}
 		}
 	}
@@ -337,7 +348,7 @@ void cpng_image_print_colors (struct CpngImage *image) {
 	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
 		if (i > 0) printf(", ");
 		if (i == image->current_color_index) printf("@");
-		printf("%s", image->colors[i].name);
+		printf("%s", image->colors[i]->name);
 	}
 	printf("]\n");
 }

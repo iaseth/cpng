@@ -26,7 +26,7 @@ struct CpngImage {
 	int cursor_col;
 
 	int current_color_index;
-	struct CpngColor colors[MAX_COLOR_MEMORY];
+	struct CpngColor *colors[MAX_COLOR_MEMORY];
 
 	int current_cursor_index;
 	struct CpngCursor cursors[MAX_CURSOR_MEMORY];
@@ -48,6 +48,8 @@ void cpng_image_set_title (struct CpngImage *image, char *title);
 int cpng_image_next_color_index (struct CpngImage *image);
 int cpng_image_previous_color_index (struct CpngImage *image);
 
+void cpng_image_add_color (struct CpngImage *image, char *color_name);
+void cpng_image_switch_color (struct CpngImage *image, char *color_name);
 void cpng_image_switch_color_next (struct CpngImage *image);
 void cpng_image_switch_color_previous (struct CpngImage *image);
 void cpng_image_switch_color_next_nth (struct CpngImage *image, int n);
