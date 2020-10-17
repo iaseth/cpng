@@ -23,6 +23,16 @@ void cpng_env_set_resolution (struct CpngEnv *env, int width, int height) {
 	env->height = height;
 }
 
+void cpng_env_set_background (struct CpngEnv *env, char *name) {
+	for (int i = 0; i < env->number_of_colors; ++i) {
+		struct CpngColor *color = env->colors[i];
+		if (strcmp(color->name, name) == 0) {
+			printf("Found background: %s\n", color->name);
+			env->background_color_index = i;
+		}
+	}
+}
+
 void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename) {
 	FILE *fp = fopen(filename, "r");
 	struct CpngColor *colors[1000];
