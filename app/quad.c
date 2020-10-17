@@ -7,12 +7,12 @@ void quad_stuff () {
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
+	cpng_env_set_background(env, "rosewood");
 
 	struct CpngImage *image = cpng_image_new(env);
 
 	cpng_image_set_author(image, "Igor");
 
-	struct CpngPixel color_pixel = {100, 100, 100};
 	char filename[100];
 	for (int i = 0; i < env->number_of_colors/4; ++i) {
 		int color_index = i * 4;
@@ -23,41 +23,31 @@ void quad_stuff () {
 		strcat(filename, ".png");
 		cpng_image_set_filename(image, filename);
 		cpng_image_set_title(image, filename);
+		cpng_image_add_color(image, "ruby");
 
-		color_pixel.red = color->red;
-		color_pixel.green = color->green;
-		color_pixel.blue = color->blue;
-		cpng_image_set_foreground_color(image, color_pixel);
-
-		cpng_image_move_cursor_to_xy(image, 250, 250);
-		cpng_image_add_rectangle(image, 540, 360);
-
-		color++;
-		color_pixel.red = color->red;
-		color_pixel.green = color->green;
-		color_pixel.blue = color->blue;
-		cpng_image_set_foreground_color(image, color_pixel);
-		cpng_image_cursor_flip_horizontal(image);
-		cpng_image_add_rectangle(image, 540, 360);
-
-		color++;
-		color_pixel.red = color->red;
-		color_pixel.green = color->green;
-		color_pixel.blue = color->blue;
-		cpng_image_set_foreground_color(image, color_pixel);
+		int border_width = 40;
+		int rectangle_width = image->width/2 - border_width;
+		int rectangle_height = image->height/2 - border_width;
+		cpng_image_move_cursor_to_xy(image, image->height/4, image->width/4);
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 		cpng_image_cursor_flip_vertical(image);
-		cpng_image_add_rectangle(image, 540, 360);
-
-		color++;
-		color_pixel.red = color->red;
-		color_pixel.green = color->green;
-		color_pixel.blue = color->blue;
-		cpng_image_set_foreground_color(image, color_pixel);
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 		cpng_image_cursor_flip_horizontal(image);
-		cpng_image_add_rectangle(image, 540, 360);
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
+		cpng_image_cursor_flip_vertical(image);
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
+
+		cpng_image_move_cursor_to_xy(image, image->height/2, image->width/2);
+		cpng_image_add_color(image, "rosewood");
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
+		cpng_image_switch_color_previous(image);
+		rectangle_width -= border_width * 2;
+		rectangle_height -= border_width * 2;
+		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
+		cpng_image_switch_color_next(image);
+		cpng_image_add_border(image, border_width);
 
 		cpng_image_save_to_disk(image);
-		//printf("Saved: (%d) '%s'\n", i, filename);
 		break;
 	}
 
