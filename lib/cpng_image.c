@@ -46,11 +46,6 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 	image->filename[0] = '\0';
 	image->title[0] = '\0';
 
-	struct CpngPixel white = {255, 255, 255};
-	cpng_image_set_foreground_color(image, white);
-	struct CpngPixel black = {0, 0, 0};
-	cpng_image_set_background_color(image, black);
-
 	image->rows = malloc(sizeof(struct CpngPixel *) * image->height);
 	for (int i = 0; i < image->height; ++i) {
 		image->rows[i] = malloc(sizeof(struct CpngPixel) * image->width);
@@ -92,15 +87,6 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 	} else {
 		return (MAX_COLOR_MEMORY - 1);
 	}
-}
-
-
-void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color) {
-	image->foreground = color;
-}
-
-void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color) {
-	image->background = color;
 }
 
 
@@ -236,7 +222,7 @@ void cpng_image_add_rectangle (struct CpngImage *image, int width, int height) {
 	if (end_row > image->height) end_row = image->height;
 	if (end_col > image->width) end_col = image->width;
 
-	struct CpngPixel color = image->foreground;
+	struct CpngColor color = image->colors[image->current_color_index];
 	for (int row=start_row; row<end_row; row++) {
 		for (int col=start_col; col<end_col; col++) {
 			image->rows[row][col].red = color.red;
@@ -269,7 +255,7 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 	int end_row = centre_row + radius;
 	int end_col = centre_col + radius;
 
-	struct CpngPixel color = image->foreground;
+	struct CpngColor color = image->colors[image->current_color_index];
 	int radius_squared = radius * radius;
 	for (int row=start_row; row<end_row; row++) {
 		int row_distance = abs(row - centre_row);

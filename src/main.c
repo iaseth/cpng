@@ -16,9 +16,6 @@ void png_image_stuff () {
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_filename(image, "pngs/x.png");
 	cpng_image_set_title(image, "Example");
-
-	struct CpngPixel facebook = {59, 89, 152};
-	cpng_image_set_foreground_color(image, facebook);
 	//cpng_image_print_details(image);
 
 	cpng_image_print_cursors(image);

@@ -35,9 +35,6 @@ struct CpngImage {
 	char filename[MAX_STRING_LENGTH];
 	char title[MAX_STRING_LENGTH];
 
-	struct CpngPixel foreground;
-	struct CpngPixel background;
-
 	struct CpngPixel **rows;
 };
 
@@ -50,9 +47,6 @@ void cpng_image_set_title (struct CpngImage *image, char *title);
 
 int cpng_image_next_color_index (struct CpngImage *image);
 int cpng_image_previous_color_index (struct CpngImage *image);
-
-void cpng_image_set_foreground_color (struct CpngImage *image, struct CpngPixel color);
-void cpng_image_set_background_color (struct CpngImage *image, struct CpngPixel color);
 
 
 int cpng_image_get_next_cursor_index (struct CpngImage *image);
