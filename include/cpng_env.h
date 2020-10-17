@@ -10,9 +10,14 @@ struct CpngEnv {
 
 	int number_of_images;
 	struct CpngImage **images;
+
+	int width;
+	int height;
 };
 
 struct CpngEnv *cpng_env_new ();
+
+void cpng_env_set_resolution (struct CpngEnv *env, int width, int height);
 
 void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename);
 void cpng_env_print_colors (struct CpngEnv *env);

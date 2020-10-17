@@ -9,6 +9,7 @@ void png_image_stuff () {
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_print_colors(env);
+	cpng_env_set_resolution(env, 3840, 2160);
 
 	struct CpngImage *image = cpng_image_new(3840, 2160);
 

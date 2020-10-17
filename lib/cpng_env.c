@@ -14,6 +14,11 @@ struct CpngEnv *cpng_env_new () {
 	return env;
 }
 
+void cpng_env_set_resolution (struct CpngEnv *env, int width, int height) {
+	env->width = width;
+	env->height = height;
+}
+
 void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename) {
 	FILE *fp = fopen(filename, "r");
 	struct CpngColor *colors[1000];
