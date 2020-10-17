@@ -11,7 +11,7 @@ void png_image_stuff () {
 	cpng_env_print_colors(env);
 	cpng_env_set_resolution(env, 3840, 2160);
 
-	struct CpngImage *image = cpng_image_new(3840, 2160);
+	struct CpngImage *image = cpng_image_new(env);
 
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_filename(image, "pngs/x.png");

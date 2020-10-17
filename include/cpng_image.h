@@ -8,11 +8,13 @@
 #define MAX_COLOR_MEMORY 20
 #define MAX_CURSOR_MEMORY 20
 
+#include "cpng_env.h"
 #include "cpng_pixel.h"
 #include "cpng_color.h"
 #include "cpng_cursor.h"
 
 struct CpngImage {
+	struct CpngEnv *env;
 	int width;
 	int height;
 	int code;
@@ -36,7 +38,7 @@ struct CpngImage {
 	struct CpngPixel **rows;
 };
 
-struct CpngImage *cpng_image_new (int width, int height);
+struct CpngImage *cpng_image_new (struct CpngEnv *env;);
 
 void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);

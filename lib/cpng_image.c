@@ -4,11 +4,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct CpngImage *cpng_image_new (int width, int height) {
+struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 	struct CpngImage *image;
 	image = malloc(sizeof(struct CpngImage));
-	image->width = width;
-	image->height = height;
+	image->env = env;
+	image->width = env->width;
+	image->height = env->height;
 	image->code = 0;
 
 	image->cursor_row = 0;
