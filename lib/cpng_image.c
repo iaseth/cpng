@@ -87,11 +87,12 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 
 void cpng_image_add_color (struct CpngImage *image, char *color_name) {
 	struct CpngColor *color = NULL;
-	//struct CpngColor next_color = image->colo;
+	int next_index = cpng_image_next_color_index(image);
 	for (int i = 0; i < image->env->number_of_colors; ++i) {
 		color = image->env->colors[i];
 		if (strcmp(color_name, color->name) == 0) {
-			printf("Found: %s\n", color->name);
+			image->colors[next_index] = color;
+			printf("%s: [%d %d %d]\n", color->name, color->red, color->green, color->blue);
 			return;
 		}
 	}
