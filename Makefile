@@ -10,15 +10,15 @@ LINK_FLAG = -lpng
 
 RM = ${AMP}rm -f
 
-CPNG_NAMES = 
-CPNG_NAMES += cpng_common
-CPNG_NAMES += cpng
-CPNG_NAMES += cpng_color
-CPNG_NAMES += cpng_cursor
-CPNG_NAMES += cpng_env
-CPNG_NAMES += cpng_image
+CPNG_MODULE_NAMES = 
+CPNG_MODULE_NAMES += cpng_common
+CPNG_MODULE_NAMES += cpng
+CPNG_MODULE_NAMES += cpng_color
+CPNG_MODULE_NAMES += cpng_cursor
+CPNG_MODULE_NAMES += cpng_env
+CPNG_MODULE_NAMES += cpng_image
 
-CPNG_OBJ_NAMES = ${addsuffix .o, ${CPNG_NAMES}}
+CPNG_OBJ_NAMES = ${addsuffix .o, ${CPNG_MODULE_NAMES}}
 CPNG_OBJS = ${addprefix build/obj/, ${CPNG_OBJ_NAMES}}
 
 CPNG_STATIC_LIB = build/libcpng.a
