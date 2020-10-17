@@ -48,6 +48,11 @@ void cpng_image_set_title (struct CpngImage *image, char *title);
 int cpng_image_next_color_index (struct CpngImage *image);
 int cpng_image_previous_color_index (struct CpngImage *image);
 
+void cpng_image_switch_color_next (struct CpngImage *image);
+void cpng_image_switch_color_previous (struct CpngImage *image);
+void cpng_image_switch_color_next_nth (struct CpngImage *image, int n);
+void cpng_image_switch_color_previous_nth (struct CpngImage *image, int n);
+
 
 int cpng_image_get_next_cursor_index (struct CpngImage *image);
 int cpng_image_get_previous_cursor_index (struct CpngImage *image);

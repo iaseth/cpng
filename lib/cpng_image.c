@@ -90,6 +90,27 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 }
 
 
+void cpng_image_switch_color_next (struct CpngImage *image) {
+	image->current_color_index = cpng_image_next_color_index(image);
+}
+
+void cpng_image_switch_color_previous (struct CpngImage *image) {
+	image->current_color_index = cpng_image_previous_color_index(image);
+}
+
+void cpng_image_switch_color_next_nth (struct CpngImage *image, int n) {
+	while (n-- > 0) {
+		cpng_image_switch_color_next(image);
+	}
+}
+
+void cpng_image_switch_color_previous_nth (struct CpngImage *image, int n) {
+	while (n-- > 0) {
+		cpng_image_switch_color_previous(image);
+	}
+}
+
+
 int cpng_image_get_next_cursor_index (struct CpngImage *image) {
 	if (image->current_cursor_index + 1 < MAX_CURSOR_MEMORY) {
 		return image->current_cursor_index + 1;
