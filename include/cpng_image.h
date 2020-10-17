@@ -36,7 +36,7 @@ struct CpngImage {
 	struct CpngPixel **rows;
 };
 
-struct CpngImage *get_new_cpng_image (int width, int height);
+struct CpngImage *cpng_image_new (int width, int height);
 
 void cpng_image_set_author (struct CpngImage *image, char *author);
 void cpng_image_set_filename (struct CpngImage *image, char *filename);
@@ -103,6 +103,6 @@ void cpng_image_print_details (struct CpngImage *image);
 
 void cpng_image_save_to_disk (struct CpngImage *image);
 
-struct CpngImage *delete_cpng_image (struct CpngImage *image);
+struct CpngImage *cpng_image_delete (struct CpngImage *image);
 
 #endif

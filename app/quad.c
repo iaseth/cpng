@@ -7,7 +7,7 @@ void quad_stuff () {
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 
-	struct CpngImage *image = get_new_cpng_image(3840, 2160);
+	struct CpngImage *image = cpng_image_new(3840, 2160);
 
 	cpng_image_set_author(image, "Igor");
 
@@ -60,7 +60,7 @@ void quad_stuff () {
 		break;
 	}
 
-	image = delete_cpng_image(image);
+	image = cpng_image_delete(image);
 	env = cpng_env_delete(env);
 }
 

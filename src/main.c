@@ -10,7 +10,7 @@ void png_image_stuff () {
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_print_colors(env);
 
-	struct CpngImage *image = get_new_cpng_image(3840, 2160);
+	struct CpngImage *image = cpng_image_new(3840, 2160);
 
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_filename(image, "pngs/x.png");
@@ -40,7 +40,7 @@ void png_image_stuff () {
 	cpng_image_add_border_with_offset(image, 440, 20);
 
 	cpng_image_save_to_disk(image);
-	image = delete_cpng_image(image);
+	image = cpng_image_delete(image);
 	env = cpng_env_delete(env);
 }
 

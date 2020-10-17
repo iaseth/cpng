@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct CpngImage *get_new_cpng_image (int width, int height) {
+struct CpngImage *cpng_image_new (int width, int height) {
 	struct CpngImage *image;
 	image = malloc(sizeof(struct CpngImage));
 	image->width = width;
@@ -427,7 +427,7 @@ void cpng_image_save_to_disk (struct CpngImage *image) {
 }
 
 
-struct CpngImage *delete_cpng_image (struct CpngImage *image) {
+struct CpngImage *cpng_image_delete (struct CpngImage *image) {
 	for (int i = 0; i < image->height; ++i) {
 		free(image->rows[i]);
 	}
