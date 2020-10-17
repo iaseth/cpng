@@ -48,6 +48,10 @@ void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename) {
 				color->green = strtol(green, NULL, 10);
 				color->blue = strtol(blue, NULL, 10);
 				color->transparency = 100;
+
+				red = NULL;
+				green = NULL;
+				blue = NULL;
 			} else if (ch == '|') {
 				line_text[line_text_index++] = '\0';
 				if (red == NULL) {
