@@ -7,6 +7,7 @@
 struct CpngEnv {
 	int number_of_colors;
 	struct CpngColor **colors;
+	int background_color_index;
 
 	int number_of_images;
 	struct CpngImage **images;

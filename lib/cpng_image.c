@@ -42,12 +42,13 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 	image->title[0] = '\0';
 
 	image->rows = malloc(sizeof(struct CpngPixel *) * image->height);
+	struct CpngColor *background = env->colors[env->background_color_index];
 	for (int i = 0; i < image->height; ++i) {
 		image->rows[i] = malloc(sizeof(struct CpngPixel) * image->width);
 		for (int j = 0; j < image->width; ++j) {
-			image->rows[i][j].red = 0;
-			image->rows[i][j].green = 0;
-			image->rows[i][j].blue = 0;
+			image->rows[i][j].red = background->red;
+			image->rows[i][j].green = background->green;
+			image->rows[i][j].blue = background->blue;
 		}
 	}
 

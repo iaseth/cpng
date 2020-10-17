@@ -7,6 +7,7 @@ struct CpngEnv *cpng_env_new () {
 	struct CpngEnv *env = malloc(sizeof(struct CpngEnv));
 	env->number_of_colors = 0;
 	env->colors = NULL;
+	env->background_color_index = 0;
 
 	env->number_of_images = 0;
 	env->images = NULL;
