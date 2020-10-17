@@ -8,6 +8,17 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 	struct CpngImage *image;
 	image = malloc(sizeof(struct CpngImage));
 	image->env = env;
+
+	image->next = NULL;
+	if (env->last_image == NULL) {
+		env->first_image = image;
+		image->previous = NULL;
+	} else {
+		env->last_image->next = image;
+		image->previous = env->last_image;
+	}
+	env->last_image = image;
+
 	image->width = env->width;
 	image->height = env->height;
 	image->code = 0;

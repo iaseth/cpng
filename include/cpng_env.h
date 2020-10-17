@@ -11,6 +11,9 @@ struct CpngEnv {
 	int number_of_images;
 	struct CpngImage **images;
 
+	struct CpngImage *first_image;
+	struct CpngImage *last_image;
+
 	int width;
 	int height;
 };

@@ -15,6 +15,9 @@
 
 struct CpngImage {
 	struct CpngEnv *env;
+	struct CpngImage *next;
+	struct CpngImage *previous;
+
 	int width;
 	int height;
 	int code;

@@ -11,6 +11,9 @@ struct CpngEnv *cpng_env_new () {
 	env->number_of_images = 0;
 	env->images = NULL;
 
+	env->first_image = NULL;
+	env->last_image = NULL;
+
 	return env;
 }
 
