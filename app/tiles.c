@@ -3,7 +3,7 @@
 
 #include "cpng.h"
 
-void tiles_stuff () {
+void tiles_stuff (int rows, int columns, int margin) {
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
@@ -15,14 +15,22 @@ void tiles_stuff () {
 	cpng_image_set_filename(image, "pngs/tiles.png");
 	cpng_image_set_title(image, "Tiles");
 
+	int tile_height = env->height / rows;
+	int tile_height_half = tile_height / 2;
+	int tile_height_actual = tile_height - margin;
+
+	int tile_width = env->width / columns;
+	int tile_width_half = tile_width / 2;
+	int tile_width_actual = tile_width - margin;
+
 	int index = 0;
-	for (int row = 0; row < 18; ++row) {
-		for (int col = 0; col < 32; ++col) {
-			int x = 60 + (row * 120);
-			int y = 60 + (col * 120);
+	for (int row = 0; row < rows; ++row) {
+		for (int col = 0; col < columns; ++col) {
+			int x = tile_height_half + (row * tile_height);
+			int y = tile_width_half + (col * tile_width);
 			cpng_image_add_color_from_index(image, index);
 			cpng_cursor_move_to_xy(image, x, y);
-			cpng_image_add_square(image, 100);
+			cpng_image_add_rectangle(image, tile_width_actual, tile_height_actual);
 			index++;
 		}
 	}
@@ -33,6 +41,10 @@ void tiles_stuff () {
 	env = cpng_env_delete(env);
 }
 
+void small_tiles() {
+	tiles_stuff(18, 32, 20);
+}
+
 int main (int argc, char const *argv[]) {
-	tiles_stuff();
+	small_tiles();
 }
