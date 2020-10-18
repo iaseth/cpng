@@ -18,10 +18,24 @@ struct CpngEnv *cpng_env_new () {
 	return env;
 }
 
+
 void cpng_env_set_resolution (struct CpngEnv *env, int width, int height) {
-	env->width = width;
-	env->height = height;
+	cpng_env_set_width(env, width);
+	cpng_env_set_height(env, height);
 }
+
+void cpng_env_set_height (struct CpngEnv *env, int height) {
+	if (height > 0 && height < CPNG_MAX_HEIGHT) {
+		env->height = height;
+	}
+}
+
+void cpng_env_set_width (struct CpngEnv *env, int width) {
+	if (width > 0 && width < CPNG_MAX_WIDTH) {
+		env->width = width;
+	}
+}
+
 
 void cpng_env_set_background (struct CpngEnv *env, char *name) {
 	for (int i = 0; i < env->number_of_colors; ++i) {

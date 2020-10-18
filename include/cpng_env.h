@@ -4,6 +4,9 @@
 #include "cpng_image.h"
 #include "cpng_color.h"
 
+#define CPNG_MAX_HEIGHT 4000
+#define CPNG_MAX_WIDTH 6000
+
 struct CpngEnv {
 	int number_of_colors;
 	struct CpngColor **colors;
@@ -22,6 +25,9 @@ struct CpngEnv {
 struct CpngEnv *cpng_env_new ();
 
 void cpng_env_set_resolution (struct CpngEnv *env, int width, int height);
+void cpng_env_set_height (struct CpngEnv *env, int height);
+void cpng_env_set_width (struct CpngEnv *env, int width);
+
 void cpng_env_set_background (struct CpngEnv *env, char *name);
 
 void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename);
