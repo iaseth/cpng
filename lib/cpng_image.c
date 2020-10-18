@@ -101,6 +101,14 @@ void cpng_image_add_color_from_name (struct CpngImage *image, char *color_name) 
 	}
 }
 
+void cpng_image_add_color_from_index (struct CpngImage *image, int index) {
+	if (index < image->env->number_of_colors) {
+		int next_index = cpng_image_next_color_index(image);
+		image->colors[next_index] = image->env->colors[index];
+		image->current_color_index = next_index;
+	}
+}
+
 void cpng_image_switch_color (struct CpngImage *image, char *color_name) {
 	//
 }
