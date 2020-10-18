@@ -28,6 +28,7 @@ CPNG_APP_NAMES =
 CPNG_APP_NAMES += quad
 CPNG_APP_NAMES += tiles
 CPNG_APP_NAMES += squares
+CPNG_APP_NAMES += chessboards
 
 CPNG_APP_EXE_PATHS = ${addsuffix .out, ${CPNG_APP_NAMES}}
 CPNG_APP_EXES = ${addprefix build/app/, ${CPNG_APP_EXE_PATHS}}
