@@ -11,8 +11,10 @@ void tiles_stuff (int rows, int columns, int margin) {
 
 	struct CpngImage *image = cpng_image_new(env);
 
+	char filename[100];
+	sprintf(filename, "pngs/tiles_%dx%d_%d.png", rows, columns, margin);
 	cpng_image_set_author(image, "Igor");
-	cpng_image_set_filename(image, "pngs/tiles.png");
+	cpng_image_set_filename(image, filename);
 	cpng_image_set_title(image, "Tiles");
 
 	int tile_height = env->height / rows;
@@ -25,8 +27,8 @@ void tiles_stuff (int rows, int columns, int margin) {
 
 	int index = 0;
 	for (int row = 0; row < rows; ++row) {
+		int x = tile_height_half + (row * tile_height);
 		for (int col = 0; col < columns; ++col) {
-			int x = tile_height_half + (row * tile_height);
 			int y = tile_width_half + (col * tile_width);
 			cpng_image_add_color_from_index(image, index);
 			cpng_cursor_move_to_xy(image, x, y);
