@@ -46,6 +46,8 @@ void tiles_stuff (int rows, int columns, int margin) {
 void small_tiles() {
 	tiles_stuff(18, 32, 20);
 	tiles_stuff(9, 16, 20);
+	tiles_stuff(9, 10, 20);
+	tiles_stuff(9, 10, 0);
 }
 
 int main (int argc, char const *argv[]) {
