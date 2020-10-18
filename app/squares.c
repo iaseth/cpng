@@ -23,8 +23,6 @@ void draw_squares (struct CpngImage *image, int width, int margin) {
 			cpng_image_add_square(image, actual_width);
 		}
 	}
-
-	cpng_image_save_to_disk(image);
 }
 
 void square_stuff () {
@@ -40,6 +38,7 @@ void square_stuff () {
 	for (int i = 0; i < env->number_of_colors; ++i) {
 		cpng_image_add_color_from_index(image, i);
 		draw_squares(image, 240, 20);
+		cpng_image_save_to_disk(image);
 	}
 
 	image = cpng_image_delete(image);
