@@ -21,7 +21,7 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 }
 
 
-void cpng_image_add_color (struct CpngImage *image, char *color_name) {
+void cpng_image_add_color_from_name (struct CpngImage *image, char *color_name) {
 	struct CpngColor *color = NULL;
 	int next_index = cpng_image_next_color_index(image);
 	for (int i = 0; i < image->env->number_of_colors; ++i) {

@@ -23,7 +23,7 @@ void quad_stuff () {
 		strcat(filename, ".png");
 		cpng_image_set_filename(image, filename);
 		cpng_image_set_title(image, filename);
-		cpng_image_add_color(image, "ruby");
+		cpng_image_add_color_from_name(image, "ruby");
 
 		int border_width = 40;
 		int rectangle_width = image->width/2 - border_width;
@@ -38,7 +38,7 @@ void quad_stuff () {
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 
 		cpng_cursor_move_to_xy(image, image->height/2, image->width/2);
-		cpng_image_add_color(image, "rosewood");
+		cpng_image_add_color_from_name(image, "rosewood");
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 		cpng_image_switch_color_previous(image);
 		rectangle_width -= border_width * 2;

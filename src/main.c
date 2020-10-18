@@ -20,7 +20,7 @@ void png_image_stuff () {
 	//cpng_image_print_details(image);
 
 	cpng_image_print_cursors(image);
-	cpng_image_add_color(image, "ruby");
+	cpng_image_add_color_from_name(image, "ruby");
 	cpng_image_print_colors(image);
 
 	cpng_cursor_move_down_right(image, 200, 50);
