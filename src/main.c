@@ -30,11 +30,11 @@ void png_image_stuff () {
 
 	cpng_image_move_cursor_to_xy(image, 250, 250);
 	cpng_image_add_plus(image, 120, 40);
-	cpng_image_cursor_flip_horizontal(image);
+	cpng_cursor_flip_horizontal(image);
 	cpng_image_add_plus(image, 120, 40);
-	cpng_image_cursor_flip_vertical(image);
+	cpng_cursor_flip_vertical(image);
 	cpng_image_add_plus(image, 120, 40);
-	cpng_image_cursor_flip_horizontal(image);
+	cpng_cursor_flip_horizontal(image);
 	cpng_image_add_plus(image, 120, 40);
 
 	cpng_image_add_border(image, 100);

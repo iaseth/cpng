@@ -30,11 +30,11 @@ void quad_stuff () {
 		int rectangle_height = image->height/2 - border_width;
 		cpng_image_move_cursor_to_xy(image, image->height/4, image->width/4);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
-		cpng_image_cursor_flip_vertical(image);
+		cpng_cursor_flip_vertical(image);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
-		cpng_image_cursor_flip_horizontal(image);
+		cpng_cursor_flip_horizontal(image);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
-		cpng_image_cursor_flip_vertical(image);
+		cpng_cursor_flip_vertical(image);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 
 		cpng_image_move_cursor_to_xy(image, image->height/2, image->width/2);
