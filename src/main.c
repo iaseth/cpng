@@ -28,7 +28,7 @@ void png_image_stuff () {
 	cpng_image_move_cursor_up(image, 200);
 	cpng_image_print_cursors(image);
 
-	cpng_image_move_cursor_to_xy(image, 250, 250);
+	cpng_cursor_move_to_xy(image, 250, 250);
 	cpng_image_add_plus(image, 120, 40);
 	cpng_cursor_flip_horizontal(image);
 	cpng_image_add_plus(image, 120, 40);

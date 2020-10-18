@@ -139,22 +139,22 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 
 
 void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_move_cursor_to_xy(image, (offset + thickness/2), (image->width / 2));
+	cpng_cursor_move_to_xy(image, (offset + thickness/2), (image->width / 2));
 	cpng_image_add_rectangle(image, image->width, thickness);
 }
 
 void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_move_cursor_to_xy(image, (image->height - (offset + thickness/2)), (image->width / 2));
+	cpng_cursor_move_to_xy(image, (image->height - (offset + thickness/2)), (image->width / 2));
 	cpng_image_add_rectangle(image, image->width, thickness);
 }
 
 void cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_move_cursor_to_xy(image, (image->height / 2), (offset + thickness / 2));
+	cpng_cursor_move_to_xy(image, (image->height / 2), (offset + thickness / 2));
 	cpng_image_add_rectangle(image, thickness, image->height);
 }
 
 void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness) {
-	cpng_image_move_cursor_to_xy(image, (image->height / 2), (image->width - (offset + thickness / 2)));
+	cpng_cursor_move_to_xy(image, (image->height / 2), (image->width - (offset + thickness / 2)));
 	cpng_image_add_rectangle(image, thickness, image->height);
 }
 

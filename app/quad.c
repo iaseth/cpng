@@ -28,7 +28,7 @@ void quad_stuff () {
 		int border_width = 40;
 		int rectangle_width = image->width/2 - border_width;
 		int rectangle_height = image->height/2 - border_width;
-		cpng_image_move_cursor_to_xy(image, image->height/4, image->width/4);
+		cpng_cursor_move_to_xy(image, image->height/4, image->width/4);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 		cpng_cursor_flip_vertical(image);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
@@ -37,7 +37,7 @@ void quad_stuff () {
 		cpng_cursor_flip_vertical(image);
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 
-		cpng_image_move_cursor_to_xy(image, image->height/2, image->width/2);
+		cpng_cursor_move_to_xy(image, image->height/2, image->width/2);
 		cpng_image_add_color(image, "rosewood");
 		cpng_image_add_rectangle(image, rectangle_width, rectangle_height);
 		cpng_image_switch_color_previous(image);

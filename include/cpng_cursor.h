@@ -7,7 +7,7 @@
 int cpng_image_get_next_cursor_index (struct CpngImage *image);
 int cpng_image_get_previous_cursor_index (struct CpngImage *image);
 
-void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y);
+void cpng_cursor_move_to_xy (struct CpngImage *image, int row_x, int col_y);
 
 void cpng_cursor_flip_diagonal (struct CpngImage *image);
 void cpng_cursor_flip_horizontal (struct CpngImage *image);
