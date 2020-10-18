@@ -11,7 +11,11 @@
 #include "cpng_env.h"
 #include "cpng_pixel.h"
 #include "cpng_color.h"
-#include "cpng_cursor.h"
+
+
+struct CpngCursor {
+	int row, col;
+};
 
 struct CpngImage {
 	struct CpngEnv *env;
@@ -54,34 +58,6 @@ void cpng_image_switch_color_next (struct CpngImage *image);
 void cpng_image_switch_color_previous (struct CpngImage *image);
 void cpng_image_switch_color_next_nth (struct CpngImage *image, int n);
 void cpng_image_switch_color_previous_nth (struct CpngImage *image, int n);
-
-
-int cpng_image_get_next_cursor_index (struct CpngImage *image);
-int cpng_image_get_previous_cursor_index (struct CpngImage *image);
-
-void cpng_image_move_cursor_to_xy (struct CpngImage *image, int row_x, int col_y);
-
-void cpng_image_cursor_flip_diagonal (struct CpngImage *image);
-void cpng_image_cursor_flip_horizontal (struct CpngImage *image);
-void cpng_image_cursor_flip_vertical (struct CpngImage *image);
-
-void cpng_image_move_cursor_to_bottom (struct CpngImage *image);
-void cpng_image_move_cursor_to_left (struct CpngImage *image);
-void cpng_image_move_cursor_to_right (struct CpngImage *image);
-void cpng_image_move_cursor_to_top (struct CpngImage *image);
-
-void cpng_image_move_cursor_to_bottom_left (struct CpngImage *image);
-void cpng_image_move_cursor_to_bottom_right (struct CpngImage *image);
-void cpng_image_move_cursor_to_top_left (struct CpngImage *image);
-void cpng_image_move_cursor_to_top_right (struct CpngImage *image);
-
-void cpng_image_move_cursor_down (struct CpngImage *image, int offset);
-void cpng_image_move_cursor_left (struct CpngImage *image, int offset);
-void cpng_image_move_cursor_right (struct CpngImage *image, int offset);
-void cpng_image_move_cursor_up (struct CpngImage *image, int offset);
-
-void cpng_image_move_cursor_down_right (struct CpngImage *image, int offset_down, int offset_right);
-void cpng_image_move_cursor_up_left (struct CpngImage *image, int offset_up, int offset_left);
 
 
 void cpng_image_add_rectangle (struct CpngImage *image, int width, int height);

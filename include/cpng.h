@@ -3,6 +3,7 @@
 
 #include "cpng_image.h"
 #include "cpng_env.h"
+#include "cpng_cursor.h"
 
 
 
