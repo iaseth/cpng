@@ -23,9 +23,9 @@ void png_image_stuff () {
 	cpng_image_add_color(image, "ruby");
 	cpng_image_print_colors(image);
 
-	cpng_image_move_cursor_down_right(image, 200, 50);
+	cpng_cursor_move_down_right(image, 200, 50);
 	cpng_image_print_cursors(image);
-	cpng_image_move_cursor_up(image, 200);
+	cpng_cursor_move_up(image, 200);
 	cpng_image_print_cursors(image);
 
 	cpng_cursor_move_to_xy(image, 250, 250);
