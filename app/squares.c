@@ -3,11 +3,12 @@
 
 #include "cpng.h"
 
-void draw_squares (struct CpngImage *image, int width, int margin, char *color_name) {
+void draw_squares (struct CpngImage *image, int width, int margin) {
+	struct CpngColor *color = image->colors[image->current_color_index];
+
 	char filename[100];
-	sprintf(filename, "pngs/squares/squares_%dx%d_%s.png", width, width, color_name);
+	sprintf(filename, "pngs/squares/squares_%dx%d_%s.png", width, width, color->name);
 	cpng_image_set_filename(image, filename);
-	cpng_image_add_color_from_name(image, color_name);
 
 	int rows = image->height / width;
 	int columns = image->width / width;
@@ -36,8 +37,10 @@ void square_stuff () {
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_title(image, "Tiles");
 
-	draw_squares(image, 240, 20, "rosewood");
-	draw_squares(image, 240, 20, "red");
+	for (int i = 0; i < env->number_of_colors; ++i) {
+		cpng_image_add_color_from_index(image, i);
+		draw_squares(image, 240, 20);
+	}
 
 	image = cpng_image_delete(image);
 	env = cpng_env_delete(env);
