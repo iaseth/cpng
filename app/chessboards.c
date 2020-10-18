@@ -10,13 +10,19 @@ void draw_chessboard (struct CpngImage *image, int margin, char *c1, char *c2) {
 	sprintf(filename, "pngs/chessboards/chessboard_%s_%s.png", c1, c2);
 	cpng_image_set_filename(image, filename);
 
-	int width = image->height / 8;
-	int columns = image->width / width;
+	int rows = 8;
+	int height = image->height / rows;
+	int half_height = height / 2;
+
+	int columns = image->width / height;
+	int width = image->width / columns;
 	int half_width = width / 2;
+
+	int actual_height = height - margin;
 	int actual_width = width - margin;
 
-	for (int row = 0; row < 8; ++row) {
-		int x = half_width + (row * width);
+	for (int row = 0; row < rows; ++row) {
+		int x = half_height + (row * height);
 		for (int col = 0; col < columns; ++col) {
 			int y = half_width + (col * width);
 			cpng_cursor_move_to_xy(image, x, y);
@@ -25,7 +31,7 @@ void draw_chessboard (struct CpngImage *image, int margin, char *c1, char *c2) {
 			} else {
 				cpng_image_add_color_from_name(image, c2);
 			}
-			cpng_image_add_square(image, actual_width);
+			cpng_image_add_rectangle(image, actual_width, actual_height);
 		}
 	}
 }
