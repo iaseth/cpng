@@ -7,6 +7,7 @@ void tiles_stuff () {
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
+	cpng_env_set_background(env, "black");
 
 	struct CpngImage *image = cpng_image_new(env);
 
