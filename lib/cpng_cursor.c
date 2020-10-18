@@ -4,61 +4,6 @@
 
 
 
-int cpng_image_next_color_index (struct CpngImage *image) {
-	if (image->current_color_index + 1 < MAX_COLOR_MEMORY) {
-		return image->current_color_index + 1;
-	} else {
-		return 0;
-	}
-}
-
-int cpng_image_previous_color_index (struct CpngImage *image) {
-	if (image->current_color_index > 0) {
-		return image->current_color_index - 1;
-	} else {
-		return (MAX_COLOR_MEMORY - 1);
-	}
-}
-
-
-void cpng_image_add_color_from_name (struct CpngImage *image, char *color_name) {
-	struct CpngColor *color = NULL;
-	int next_index = cpng_image_next_color_index(image);
-	for (int i = 0; i < image->env->number_of_colors; ++i) {
-		color = image->env->colors[i];
-		if (strcmp(color_name, color->name) == 0) {
-			image->colors[next_index] = color;
-			image->current_color_index = next_index;
-			return;
-		}
-	}
-}
-
-void cpng_image_switch_color (struct CpngImage *image, char *color_name) {
-	//
-}
-
-void cpng_image_switch_color_next (struct CpngImage *image) {
-	image->current_color_index = cpng_image_next_color_index(image);
-}
-
-void cpng_image_switch_color_previous (struct CpngImage *image) {
-	image->current_color_index = cpng_image_previous_color_index(image);
-}
-
-void cpng_image_switch_color_next_nth (struct CpngImage *image, int n) {
-	while (n-- > 0) {
-		cpng_image_switch_color_next(image);
-	}
-}
-
-void cpng_image_switch_color_previous_nth (struct CpngImage *image, int n) {
-	while (n-- > 0) {
-		cpng_image_switch_color_previous(image);
-	}
-}
-
-
 int cpng_cursor_get_next_index (struct CpngImage *image) {
 	if (image->current_cursor_index + 1 < MAX_CURSOR_MEMORY) {
 		return image->current_cursor_index + 1;
