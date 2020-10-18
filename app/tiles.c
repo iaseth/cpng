@@ -15,11 +15,11 @@ void tiles_stuff () {
 	cpng_image_set_title(image, "Tiles");
 
 	int index = 0;
-	cpng_image_add_color_from_name(image, "rosewood");
 	for (int row = 0; row < 18; ++row) {
 		for (int col = 0; col < 32; ++col) {
 			int x = 60 + (row * 120);
 			int y = 60 + (col * 120);
+			cpng_image_add_color_from_index(image, index);
 			cpng_cursor_move_to_xy(image, x, y);
 			cpng_image_add_square(image, 100);
 			index++;
