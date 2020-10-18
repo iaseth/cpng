@@ -12,7 +12,7 @@ void tiles_stuff (int rows, int columns, int margin) {
 	struct CpngImage *image = cpng_image_new(env);
 
 	char filename[100];
-	sprintf(filename, "pngs/tiles_%dx%d_%d.png", rows, columns, margin);
+	sprintf(filename, "pngs/tiles/tiles_%dx%d_%d.png", rows, columns, margin);
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_filename(image, filename);
 	cpng_image_set_title(image, "Tiles");
@@ -45,6 +45,7 @@ void tiles_stuff (int rows, int columns, int margin) {
 
 void small_tiles() {
 	tiles_stuff(18, 32, 20);
+	tiles_stuff(9, 16, 20);
 }
 
 int main (int argc, char const *argv[]) {
