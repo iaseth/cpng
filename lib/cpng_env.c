@@ -3,7 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct CpngEnv *cpng_env_new () {
+struct CpngEnv *
+cpng_env_new ()
+{
 	struct CpngEnv *env = malloc(sizeof(struct CpngEnv));
 	env->number_of_colors = 0;
 	env->colors = NULL;
@@ -19,25 +21,33 @@ struct CpngEnv *cpng_env_new () {
 }
 
 
-void cpng_env_set_resolution (struct CpngEnv *env, int width, int height) {
+void
+cpng_env_set_resolution (struct CpngEnv *env, int width, int height)
+{
 	cpng_env_set_width(env, width);
 	cpng_env_set_height(env, height);
 }
 
-void cpng_env_set_height (struct CpngEnv *env, int height) {
+void
+cpng_env_set_height (struct CpngEnv *env, int height)
+{
 	if (height > 0 && height < CPNG_MAX_HEIGHT) {
 		env->height = height;
 	}
 }
 
-void cpng_env_set_width (struct CpngEnv *env, int width) {
+void
+cpng_env_set_width (struct CpngEnv *env, int width)
+{
 	if (width > 0 && width < CPNG_MAX_WIDTH) {
 		env->width = width;
 	}
 }
 
 
-void cpng_env_set_background (struct CpngEnv *env, char *name) {
+void
+cpng_env_set_background (struct CpngEnv *env, char *name)
+{
 	for (int i = 0; i < env->number_of_colors; ++i) {
 		struct CpngColor *color = env->colors[i];
 		if (strcmp(color->name, name) == 0) {
@@ -47,7 +57,9 @@ void cpng_env_set_background (struct CpngEnv *env, char *name) {
 	}
 }
 
-void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename) {
+void
+cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename)
+{
 	FILE *fp = fopen(filename, "r");
 	struct CpngColor *colors[1000];
 	int color_index = 0;
@@ -100,7 +112,9 @@ void cpng_env_add_colors_from_file (struct CpngEnv *env, char *filename) {
 	}
 }
 
-void cpng_env_print_colors (struct CpngEnv *env) {
+void
+cpng_env_print_colors (struct CpngEnv *env)
+{
 	struct CpngColor *color;
 	for (int i = 0; i < env->number_of_colors; ++i) {
 		color = env->colors[i];
@@ -108,7 +122,9 @@ void cpng_env_print_colors (struct CpngEnv *env) {
 	}
 }
 
-struct CpngEnv *cpng_env_delete (struct CpngEnv *env) {
+struct CpngEnv *
+cpng_env_delete (struct CpngEnv *env)
+{
 	for (int i = 0; i < env->number_of_colors; ++i) {
 		free(env->colors[i]);
 	}
