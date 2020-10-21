@@ -3,7 +3,9 @@
 
 #include "cpng.h"
 
-void draw_chessboard (struct CpngImage *image, int margin, char *c1, char *c2) {
+void
+draw_chessboard (struct CpngImage *image, int margin, char *c1, char *c2)
+{
 	struct CpngColor *color = image->colors[image->current_color_index];
 
 	char filename[100];
@@ -36,7 +38,9 @@ void draw_chessboard (struct CpngImage *image, int margin, char *c1, char *c2) {
 	}
 }
 
-void chessboard_stuff () {
+void
+chessboard_stuff ()
+{
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
@@ -53,6 +57,8 @@ void chessboard_stuff () {
 	env = cpng_env_delete(env);
 }
 
-int main (int argc, char const *argv[]) {
+int
+main (int argc, char const *argv[])
+{
 	chessboard_stuff();
 }

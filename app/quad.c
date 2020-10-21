@@ -3,7 +3,9 @@
 
 #include "cpng.h"
 
-void quad_stuff () {
+void
+quad_stuff ()
+{
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
@@ -55,6 +57,8 @@ void quad_stuff () {
 	env = cpng_env_delete(env);
 }
 
-int main (int argc, char const *argv[]) {
+int
+main (int argc, char const *argv[])
+{
 	quad_stuff();
 }

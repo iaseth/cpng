@@ -3,7 +3,9 @@
 
 #include "cpng.h"
 
-void draw_squares (struct CpngImage *image, int width, int margin) {
+void
+draw_squares (struct CpngImage *image, int width, int margin)
+{
 	struct CpngColor *color = image->colors[image->current_color_index];
 
 	char filename[100];
@@ -25,7 +27,9 @@ void draw_squares (struct CpngImage *image, int width, int margin) {
 	}
 }
 
-void square_stuff () {
+void
+square_stuff ()
+{
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
@@ -45,6 +49,8 @@ void square_stuff () {
 	env = cpng_env_delete(env);
 }
 
-int main (int argc, char const *argv[]) {
+int
+main (int argc, char const *argv[])
+{
 	square_stuff();
 }

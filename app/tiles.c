@@ -3,7 +3,9 @@
 
 #include "cpng.h"
 
-void tiles_stuff (int rows, int columns, int margin) {
+void
+tiles_stuff (int rows, int columns, int margin)
+{
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	cpng_env_set_resolution(env, 3840, 2160);
@@ -43,13 +45,17 @@ void tiles_stuff (int rows, int columns, int margin) {
 	env = cpng_env_delete(env);
 }
 
-void small_tiles() {
+void
+small_tiles ()
+{
 	tiles_stuff(18, 32, 20);
 	tiles_stuff(9, 16, 20);
 	tiles_stuff(9, 10, 20);
 	tiles_stuff(9, 10, 0);
 }
 
-int main (int argc, char const *argv[]) {
+int
+main (int argc, char const *argv[])
+{
 	small_tiles();
 }
