@@ -5,7 +5,9 @@
 
 #include "cpng.h"
 
-void png_image_stuff () {
+void
+png_image_stuff ()
+{
 	struct CpngEnv *env = cpng_env_new();
 	cpng_env_add_colors_from_file(env, "data/rgba.txt");
 	//cpng_env_print_colors(env);
@@ -46,6 +48,8 @@ void png_image_stuff () {
 	env = cpng_env_delete(env);
 }
 
-int main (int argc, char const *argv[]) {
+int
+main (int argc, char const *argv[])
+{
 	png_image_stuff();
 }
