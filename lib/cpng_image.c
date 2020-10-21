@@ -6,7 +6,9 @@
 
 #include "cpng_cursor.h"
 
-struct CpngImage *cpng_image_new (struct CpngEnv *env) {
+struct CpngImage *
+cpng_image_new (struct CpngEnv *env)
+{
 	struct CpngImage *image;
 	image = malloc(sizeof(struct CpngImage));
 	image->env = env;
@@ -58,20 +60,28 @@ struct CpngImage *cpng_image_new (struct CpngEnv *env) {
 }
 
 
-void cpng_image_set_author (struct CpngImage *image, char *author) {
+void
+cpng_image_set_author (struct CpngImage *image, char *author)
+{
 	strcpy(image->author, author);
 }
 
-void cpng_image_set_filename (struct CpngImage *image, char *filename) {
+void
+cpng_image_set_filename (struct CpngImage *image, char *filename)
+{
 	strcpy(image->filename, filename);
 }
 
-void cpng_image_set_title (struct CpngImage *image, char *title) {
+void
+cpng_image_set_title (struct CpngImage *image, char *title)
+{
 	strcpy(image->title, title);
 }
 
 
-int cpng_image_next_color_index (struct CpngImage *image) {
+int
+cpng_image_next_color_index (struct CpngImage *image)
+{
 	if (image->current_color_index + 1 < MAX_COLOR_MEMORY) {
 		return image->current_color_index + 1;
 	} else {
@@ -79,7 +89,9 @@ int cpng_image_next_color_index (struct CpngImage *image) {
 	}
 }
 
-int cpng_image_previous_color_index (struct CpngImage *image) {
+int
+cpng_image_previous_color_index (struct CpngImage *image)
+{
 	if (image->current_color_index > 0) {
 		return image->current_color_index - 1;
 	} else {
@@ -88,7 +100,9 @@ int cpng_image_previous_color_index (struct CpngImage *image) {
 }
 
 
-void cpng_image_add_color_from_name (struct CpngImage *image, char *color_name) {
+void
+cpng_image_add_color_from_name (struct CpngImage *image, char *color_name)
+{
 	struct CpngColor *color = NULL;
 	int next_index = cpng_image_next_color_index(image);
 	for (int i = 0; i < image->env->number_of_colors; ++i) {
@@ -101,7 +115,9 @@ void cpng_image_add_color_from_name (struct CpngImage *image, char *color_name) 
 	}
 }
 
-void cpng_image_add_color_from_index (struct CpngImage *image, int index) {
+void
+cpng_image_add_color_from_index (struct CpngImage *image, int index)
+{
 	if (index < image->env->number_of_colors) {
 		int next_index = cpng_image_next_color_index(image);
 		image->colors[next_index] = image->env->colors[index];
@@ -109,32 +125,44 @@ void cpng_image_add_color_from_index (struct CpngImage *image, int index) {
 	}
 }
 
-void cpng_image_switch_color (struct CpngImage *image, char *color_name) {
+void
+cpng_image_switch_color (struct CpngImage *image, char *color_name)
+{
 	//
 }
 
-void cpng_image_switch_color_next (struct CpngImage *image) {
+void
+cpng_image_switch_color_next (struct CpngImage *image)
+{
 	image->current_color_index = cpng_image_next_color_index(image);
 }
 
-void cpng_image_switch_color_previous (struct CpngImage *image) {
+void
+cpng_image_switch_color_previous (struct CpngImage *image)
+{
 	image->current_color_index = cpng_image_previous_color_index(image);
 }
 
-void cpng_image_switch_color_next_nth (struct CpngImage *image, int n) {
+void
+cpng_image_switch_color_next_nth (struct CpngImage *image, int n)
+{
 	while (n-- > 0) {
 		cpng_image_switch_color_next(image);
 	}
 }
 
-void cpng_image_switch_color_previous_nth (struct CpngImage *image, int n) {
+void
+cpng_image_switch_color_previous_nth (struct CpngImage *image, int n)
+{
 	while (n-- > 0) {
 		cpng_image_switch_color_previous(image);
 	}
 }
 
 
-void cpng_image_add_rectangle (struct CpngImage *image, int width, int height) {
+void
+cpng_image_add_rectangle (struct CpngImage *image, int width, int height)
+{
 	if (width <= 0 || height <= 0) return;
 
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
@@ -160,18 +188,24 @@ void cpng_image_add_rectangle (struct CpngImage *image, int width, int height) {
 	}
 }
 
-void cpng_image_add_square (struct CpngImage *image, int width) {
+void
+cpng_image_add_square (struct CpngImage *image, int width)
+{
 	cpng_image_add_rectangle(image, width, width);
 }
 
 
-void cpng_image_add_plus (struct CpngImage *image, int width, int thickness) {
+void
+cpng_image_add_plus (struct CpngImage *image, int width, int thickness)
+{
 	cpng_image_add_rectangle(image, width, thickness);
 	cpng_image_add_rectangle(image, thickness, width);
 }
 
 
-void cpng_image_add_circle (struct CpngImage *image, int radius) {
+void
+cpng_image_add_circle (struct CpngImage *image, int radius)
+{
 	if (radius <= 0) return;
 	struct CpngCursor cursor = image->cursors[image->current_cursor_index];
 	int centre_row = cursor.row;
@@ -201,31 +235,43 @@ void cpng_image_add_circle (struct CpngImage *image, int radius) {
 }
 
 
-void cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness) {
+void
+cpng_image_add_bar_at_top (struct CpngImage *image, int offset, int thickness)
+{
 	cpng_cursor_move_to_xy(image, (offset + thickness/2), (image->width / 2));
 	cpng_image_add_rectangle(image, image->width, thickness);
 }
 
-void cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness) {
+void
+cpng_image_add_bar_at_bottom (struct CpngImage *image, int offset, int thickness)
+{
 	cpng_cursor_move_to_xy(image, (image->height - (offset + thickness/2)), (image->width / 2));
 	cpng_image_add_rectangle(image, image->width, thickness);
 }
 
-void cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickness) {
+void
+cpng_image_add_rod_at_left (struct CpngImage *image, int offset, int thickness)
+{
 	cpng_cursor_move_to_xy(image, (image->height / 2), (offset + thickness / 2));
 	cpng_image_add_rectangle(image, thickness, image->height);
 }
 
-void cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness) {
+void
+cpng_image_add_rod_at_right (struct CpngImage *image, int offset, int thickness)
+{
 	cpng_cursor_move_to_xy(image, (image->height / 2), (image->width - (offset + thickness / 2)));
 	cpng_image_add_rectangle(image, thickness, image->height);
 }
 
-void cpng_image_add_border (struct CpngImage *image, int thickness) {
+void
+cpng_image_add_border (struct CpngImage *image, int thickness)
+{
 	cpng_image_add_border_with_offset(image, 0, thickness);
 }
 
-void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int thickness) {
+void
+cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int thickness)
+{
 	cpng_image_add_bar_at_top(image, offset, thickness);
 	cpng_image_add_bar_at_bottom(image, offset, thickness);
 	cpng_image_add_rod_at_left(image, offset, thickness);
@@ -233,13 +279,17 @@ void cpng_image_add_border_with_offset (struct CpngImage *image, int offset, int
 }
 
 
-void cpng_image_print_meta (struct CpngImage *image) {
+void
+cpng_image_print_meta (struct CpngImage *image)
+{
 	printf("CpngImage: %s\n", image->title);
 	printf("   Author: %s\n", image->author);
 	printf(" Filename: %s\n", image->filename);
 }
 
-void cpng_image_print_colors (struct CpngImage *image) {
+void
+cpng_image_print_colors (struct CpngImage *image)
+{
 	printf("   Colors: [");
 	for (int i = 0; i < MAX_COLOR_MEMORY; ++i) {
 		if (i > 0) printf(", ");
@@ -249,7 +299,9 @@ void cpng_image_print_colors (struct CpngImage *image) {
 	printf("]\n");
 }
 
-void cpng_image_print_cursors (struct CpngImage *image) {
+void
+cpng_image_print_cursors (struct CpngImage *image)
+{
 	printf("  Cursors: [");
 	for (int i = 0; i < MAX_CURSOR_MEMORY; ++i) {
 		if (i > 0) printf(", ");
@@ -260,18 +312,24 @@ void cpng_image_print_cursors (struct CpngImage *image) {
 }
 
 
-void cpng_image_print (struct CpngImage *image) {
+void
+cpng_image_print (struct CpngImage *image)
+{
 	printf("CpngImage '%s' (%4d x %4d) [%4d, %4d]\n", image->filename, image->width, image->height, image->cursor_row, image->cursor_col);
 }
 
-void cpng_image_print_details (struct CpngImage *image) {
+void
+cpng_image_print_details (struct CpngImage *image)
+{
 	cpng_image_print_meta(image);
 	cpng_image_print_colors(image);
 	cpng_image_print_cursors(image);
 }
 
 
-void cpng_image_save_to_disk (struct CpngImage *image) {
+void
+cpng_image_save_to_disk (struct CpngImage *image)
+{
 	FILE *fp = NULL;
 	png_structp png_ptr = NULL;
 	png_infop info_ptr = NULL;
@@ -354,7 +412,9 @@ void cpng_image_save_to_disk (struct CpngImage *image) {
 }
 
 
-struct CpngImage *cpng_image_delete (struct CpngImage *image) {
+struct CpngImage *
+cpng_image_delete (struct CpngImage *image)
+{
 	for (int i = 0; i < image->height; ++i) {
 		free(image->rows[i]);
 	}
