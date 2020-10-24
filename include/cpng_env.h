@@ -1,5 +1,5 @@
-#ifndef CPNG_ENV_H
-#define CPNG_ENV_H
+#ifndef CPNG_ENV_H_IS_INCLUDED
+#define CPNG_ENV_H_IS_INCLUDED
 
 #include "cpng_image.h"
 #include "cpng_color.h"

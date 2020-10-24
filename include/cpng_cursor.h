@@ -1,5 +1,5 @@
-#ifndef CPNG_CURSOR_H
-#define CPNG_CURSOR_H
+#ifndef CPNG_CURSOR_H_IS_INCLUDED
+#define CPNG_CURSOR_H_IS_INCLUDED
 
 #include "cpng_image.h"
 

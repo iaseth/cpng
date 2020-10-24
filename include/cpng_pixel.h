@@ -1,5 +1,5 @@
-#ifndef CPNG_PIXEL_H
-#define CPNG_PIXEL_H
+#ifndef CPNG_PIXEL_H_IS_INCLUDED
+#define CPNG_PIXEL_H_IS_INCLUDED
 
 #include <stdint.h>
 

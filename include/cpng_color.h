@@ -1,5 +1,5 @@
-#ifndef CPNG_COLOR_H
-#define CPNG_COLOR_H
+#ifndef CPNG_COLOR_H_IS_INCLUDED
+#define CPNG_COLOR_H_IS_INCLUDED
 
 #include <stdint.h>
 
