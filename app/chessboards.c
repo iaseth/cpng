@@ -50,8 +50,10 @@ chessboard_stuff ()
 	cpng_image_set_author(image, "Igor");
 	cpng_image_set_title(image, "Chessboards");
 
-	draw_chessboard(image, 20, "awesome", "burgundy");
-	cpng_image_save_to_disk(image);
+	for (int i = 0; i < env->number_of_colors; ++i) {
+		draw_chessboard(image, 10, "black", env->colors[i]->name);
+		cpng_image_save_to_disk(image);
+	}
 
 	image = cpng_image_delete(image);
 	env = cpng_env_delete(env);
